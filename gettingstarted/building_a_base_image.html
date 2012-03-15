@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="../index.html">Amazon EC2</a> &gt; <a href="./building_a_base_image.html">Build a Linux Base Image</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">Build a Linux Base Image</a></h2>
+
+            <p>
+
+ <h2>Core Concepts</h2>
+
+<h3>Cookbook</h3>
+
+Cookbooks are the configration definitions used by Chef.
+Cookbooks contain Attributes, Definitions, File Distribution, Libraries, Recipes, Resources and Templates that are rendered on Chef-configured machines with your dynamically substituted values. Think config files on steroids.
+
+
+
+<h3>Amazon Machine Image (AMI)</h3>
+
+
+For EBS based instances an An Amazon Machine Image (AMI) is an EBS snapshot. For Instance instances and AMI is an encrypted file stored in Amazon S3. It contains all the information necessary to boot instances of your software.
+It is somewhat analogous to a snapshot of the boot partition containing the operating system and installed software running on your server.
+
+
+</p>
+
+<br><br>
+
+
+<h2 id="buildabaseserver">Build a Base Server</h2>
+
+1. The Chef Repository of EC2Dream Locationn is setting in the Settings panel.<br>
+In the Chef Repository edit cookbooks/base/attributes/default.rb and change the atributes AMAZON_PUBLIC_KEY, AMAZON_ACCESS_KEY_ID and EC2_URL to
+the values in your Settings in EC2Dream.<br><br>
+
+2. In the Server panel for the running Base server press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the Base cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/image30h.jpg"><br><br>
+
+3. Create a Base Image<br>
+   a. For EBS Images create an Image by pressing on the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png"> in the server tab.<br>
+ <img border=0 width=600 height=325 src="../gettingstarted/images/image30d.jpg"><br><br>
+
+   b. For Instance Store Images:<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;   -Configure an run the bundle.rb script on the server<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;   -Register the image by pressing the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png">in the server tab.<br><br>
+
+4. Shutdown the server by pressing the Terminate button <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">in the server tab.<br> and update the base launch profile with the new image.<br>
+
+   <img border=0 width=600 height=225 src="../gettingstarted/images/image30g.jpg"><br><br>
+
+5. You might like to test the new base image by launching it and proving it starts up<br><br>
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+				       Next: <a href="../index.html">Documentation</a> &gt; <a href="../index.html">Amazon EC2</a> &gt; <a href="../application/index.html">Build an Application</a>
+		      </div>
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

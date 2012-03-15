@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Build an Application</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">Build an Application</a></h2>
+
+            <p>
+
+ <h2>Core Concepts</h2>
+
+
+<h3>Elastic IP</h3>
+
+  Elastic IP addresses are static IP addresses designed for
+dynamic cloud computing. Elastic IP addresses are associated with your account,
+not specific instances. Any elastic IP addresses that you associate with your
+account remain associated with your account until you explicitly release them.
+Unlike traditional static IP addresses, however, elastic IP addresses allow you
+to mask instance or availability zone failures by rapidly remapping your public
+IP addresses to any instance in your account. You can only associate one
+elastic IP address with one instance at a time.
+
+
+
+
+</p>
+
+<br><br>
+
+<h2 id="createanewamazonebsvolume">Optionally Create a separate Amazon EBS Volume</h2>
+
+To create a new Amazon EBS Volume, perform the following steps:<br><br>
+
+1. Click on the "EBS Volumes" in the tree of EC2Dream System Admin.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image23.jpg"><br><br>
+
+2. Create an EBS by clicking on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"><br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image23a.jpg"><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;-Give the EBS a nickname i.e. App.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-Type in the size in gigabytes (GB) of the volume you would like between 1 and 1000.
+I would recommend 10GB.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-Specify the availability zone and "no snapshot".<br>
+<b>NOTE:</b> A volume must be in the same availability zone as an instance. You can optionally specify an Availability Zone if desired or the snapshot id to create a
+volume from. <br><br>
+3. Click the "Create" button, and your Amazon EBS volume will be created.<br>
+
+<b>NOTE:</b> If you accidentally create a volume in the wrong zone, you can
+either create a new blank volume in the proper zone, or create a new volume
+based on a snapshot of a volume in another zone.<br><br>
+4. If a server instance is already running it can be attached dynamically to the instance by pressing the attach button <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png">.
+Then mounted and initialised on the server.<br><br>
+5. It can also be attached, mounted and initialised by the cloud_init.rb script at startup by specifying parameters in the userdata<br><br>
+<h2 id="creatinganeweip">Optionally creating a new Elastic IP</h2>
+Some applications like (for example Magento) have the IP Address or URL is configured in the application so need a fixed IP Address.<br>
+
+Also for production an Elastic IP is typically configured for outwardly facing parts.<br>
+
+ 1. Click on "Elastic IPs" in the tree of EC2Dream System Admin and then click on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> and a new Elastic IP address will be allocated.<br><br>
+
+ <img border=0 width=600 height=225 src="../gettingstarted/images/image50.jpg"><br><br>
+
+ 2. When creating the launch profile for the App server add &elasticip=999.999.999.999 to the userdata<br><br>
+
+ 3. If you do have an instance running associate the IP with an instance by click on the link icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"> and select the IP address and server and press "Associate" and then "Yes" to confirm.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image51.jpg"><br><br>
+
+
+<h2 id="buildapplication">Create Security Group and launch the server</h2>
+
+<br>
+1. Create a Security Group for the server called App.<br><br>
+
+2. Create a launch profile for App with an Image id for the Base Image created earlier.<br>
+
+   <img border=0 width=600 height=425 src="../gettingstarted/images/image51b.jpg"><br><br>
+
+   If you are using a separate EBS specify in the user data:<br>
+&nbsp;&nbsp;&nbsp;vol=vol-xxxxxx&device=/dev/sdf&dir=/mnt/data&init_ebs=y<br><br>
+   If you are using an elastic ip specify in the user data:<br>
+&nbsp;&nbsp;&nbsp;elastic_ip=999.999.999.999<br><br>
+NOTE: Make sure to remove init_ebs=y before subsequent launches of the server<br><br>
+
+2. Launch the server and in the Server panel for the running App server press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the App cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/image30h.jpg"><br><br>
+
+3. The App cookbook installs and runs apache so to test go into a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
+   For ubuntu servers you will see an initial server like:<br><br>
+
+<img border=0 width=400 height=150 src="../gettingstarted/images/chef_apache.png"><br>
+
+ and for Centos:<br><br>
+<img border=0 width=400 height=225 src="../gettingstarted/images/centos_apache_welcome.jpg"><br><br>
+
+
+4. For Production either:<br>
+    a. Deploy the Application cookbooks to Hosted Chef so servers can run the base image and install the application at startup by specifying in the user data: (see <a href="../gettingstarted/using_hosted_chef.html">Using Hosted Chef</a> for more details)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chef_run_list=recipe[apache2]<br>
+    b. Create an image from the Application built by the application cookbook and run that image in production.<br>
+    c. Deploy the image to a source control system like Github and have the servers load the application cookbook at startup and install.<br><br>
+
+
+5. There are some install scripts not currently in cookbooks. To run these open the required ports in the App security group, logon to the App server and run the Application install script:<br><br>
+
+&nbsp;&nbsp;&nbsp;For Alfresco see  <a href="./installing_alfresco.html">Install Alfresco</a><br><br>
+
+&nbsp;&nbsp;&nbsp;For Magento see  <a href="./installing_magento.html">Install Magento</a><br><br>
+
+&nbsp;&nbsp;&nbsp;For OpenBravo see  <a href="./installing_openbravo.html">Install OpenBravo</a><br><br>
+
+&nbsp;&nbsp;&nbsp;For SugarCRM see  <a href="./installing_sugarcrm.html">Install SugarCRM</a><br>
+
+You will find the scripts at <a href="https://github.com/neillturner/ec2dream/tree/master/scripts/applications">https://github.com/neillturner/ec2dream/tree/master/scripts/applications</a><br><br>
+
+
+6. To automate the start and stop of the application add the relevant application command to the /etc/rc.local and /etc/rc6.d files.<br><br>
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+				       Next: <a href="../index.html">Back to Documentation</a>
+		      </div>
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

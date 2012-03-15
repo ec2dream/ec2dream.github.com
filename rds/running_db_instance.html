@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Amazon RDS</a> &gt; <a href="./running_a_db_instance.html">Run DB Instance</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">Run an RDS DBInstance.</a></h2>
+            <p>
+<p>
+
+ <h2>Core Concepts</h2>
+
+
+
+
+
+<h3>Amazon RDS DBInstance</h3>
+
+
+A database instance is an EC2 instance running the database. Database is stored on an EBS-like SAN storage but is
+is ephemeral unless you save a snapshot at termination.<br><br>
+
+
+
+<h2 id="launchinganinstance">Launching a DB Instance</h2>
+
+1. In the EC2Dream System Admin click on testdb under RDS and the launch profile tab will open.<br><br>
+
+<img border=0 width=600 height=375 src="./images/image40.jpg"><br><br>
+
+2. Specify the DBName, Availability Zone, Master user name, Master password and DB Parameter Group Name.<br><br>
+
+<img border=0 width=600 height=375 src="./images/image41.jpg"><br><br>
+
+3. Launch the DB Instance by pressing the Launch button <img border=0 width=20 height=20 src="./icons/rocketdb.png">.<br><br>
+
+<img border=0 width=600 height=375 src="./images/image42.jpg"><br><br>
+
+4. To access the MySQL Administrator, enter the Master user password and click on the <img border=0 width=20 height=20 src="../gettingstarted/icons/monitor.png"> icon in the Server tab.<br><br>
+
+<img border=0 width=600 height=375 src="./images/image43.jpg"><br><br>
+
+NOTE: This assumes the MySQL GUI Tools are installed on your client.<br><br>
+
+5. To modify the DBInstance press on the <img border=0 width=20 height=20 src="../gettingstarted/icons/application_edit.png"> icon.<br><br>
+
+<img border=0 width=600 height=375 src="./images/image44.jpg"><br><br>
+
+6. Enter the values to modify and press the modify button.<br><br>
+
+7. To delete the DB instance click on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">.<br><br>
+
+<img border=0 width=600 height=375 src="./images/image46.jpg"><br><br>
+
+8.  Either click Skip Final Snapshot or specify the final snapshot id and press the Delete button.<br><br>
+
+<img border=0 width=600 height=375 src="./images/image47.jpg"><br><br>
+
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+				       Next: <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Amazon RDS</a> &gt; <a href="./restoring_db_instance.html">Restore DB Instance</a>
+		      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

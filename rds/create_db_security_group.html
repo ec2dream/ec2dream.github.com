@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Amazon RDS</a> &gt; <a href="./create_db_security_group.html">Create DB Security Group</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">> Create DB Security Group.</a></h2>
+
+            <p>
+
+ <h2>Core Concepts</h2>
+
+
+
+
+<h3>DB Security Group</h3>
+
+
+
+<p>The DB security group is analogous to a firewall that can block all incoming (ingress) and outgoing (egress) traffic that does not come in on a specific IP (specified by a CIDR) or port number range.
+For more information on CIDRs, please visit <a href="http://en.wikipedia.org/wiki/CIDR">http://en.wikipedia.org/wiki/CIDR</a>.
+<br>Also the DB security group  controls the access of other EC2 applications to the database via specifying EC2 security groups.
+<br>It is a good idea to have a separate DB security group for each DB instance and leave the default db security group empty.
+
+.
+
+</p>
+
+
+<br><br>
+<h2 id="creatingadbsecuritygroup">Setting up a DB Security Group</h2>
+
+
+
+Every launched RDS DB Instance needs a DB security group defined to specify what network traffic is allowed to reach the DB instance. If not specified Amazon RDS has a default DB security group that does not enable any traffic.
+
+We will create a new group called testdb. You might like to call the group another name that identifies your application.<br>
+
+
+
+1. In EC2Dream System Admin In the Environment tab click on the icon <img border=0 width=20 height=20 src="./icons/rocket_new.png"> <br>
+2. Select Securityt Group type database and enter the name testdb (or another name that identifies your database) in the popup screen.<br><br>
+
+
+<img border=0 width=600 height=275 src="./images/image20.jpg"><br><br>
+
+
+
+3. Press "Create" and the DB security group is created.<br>
+
+4. press the refresh button <img border=0 width=20 height=20 src="../gettingstarted/icons/arrow_refresh.png"> You will see a new reference to testdb in the RDS in the left-hand tree panel.<br><br>
+
+<img border=0 width=600 height=225 src="./images/image21.jpg"><br><br><br>
+
+5. To add authorisations to the db security group click on the testdb in the tree of EC2Dream System Admin. Then click on the SecGrp tab to display the db security groups.<br><br>
+
+<img border=0 width=600 height=225 src="./images/image22.jpg"><br><br>
+
+6. Create an authorization for your Ip address by clicking on the <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"> icon, entering your IP address and pressing save.<br><br>
+
+<img border=0 width=600 height=225 src="./images/image22b.jpg"><br><br>
+
+7. Authorizations are revoked by clicking on the <img border=0 width=20 height=20 src="../gettingstarted/icons/link_break.png"> icon.<br><br>
+
+<img border=0 width=600 height=225 src="./images/image22c.jpg"><br><br>
+
+<br><br>
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+				       Next: <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Amazon RDS</a> &gt; <a href="./create_db_parameter_group.html">Create DB Parameter Group</a>
+		      </div>
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

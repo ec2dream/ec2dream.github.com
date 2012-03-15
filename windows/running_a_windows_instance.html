@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+
+  <div id="breadcrumb">
+         <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Using Windows Servers</a> &gt; <a href="./running_a_windows_instance.html">Run a Windows Instance
+</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">Run a Windows Instance.</a></h2>
+
+            <p>
+
+ <h2>Core Concepts</h2>
+
+
+
+The sections below outline the core concepts used in this tutorial.
+
+
+
+<h3>Amazon Machine Image (AMI)</h3>
+
+
+
+An Amazon Machine Image (AMI) is an encrypted file stored in Amazon S3. It contains all the information necessary to boot instances of your software.
+It is somewhat analogous to a snapshot of the boot partition containing the operating system and installed software running on your server.
+
+
+
+<h3>Amazon EC2 Instance</h3>
+
+
+
+A running server instantiated from an AMI is referred to as an instance. All instances launched from the same AMI will create a nearly identical running server (except for the IP range or computer name).
+Note that an instance is ephemeral and that any information on it is lost when it is terminated or if it fails.
+The Elastic Block Storage feature can be used to create long term storage for data produced by the instance.
+
+
+<h3>Security Group</h3>
+
+
+
+<p>The security group is analogous to a firewall that can block all incoming (ingress) and outgoing (egress) traffic that does not come in on a specific IP (specified by a CIDR) or port number range.
+For more information on CIDRs, please visit <a href="http://en.wikipedia.org/wiki/CIDR">http://en.wikipedia.org/wiki/CIDR</a>.
+<br>With EC2Dream System Admin we use the security group to identify the server so while each EC2 instance can be a member of up to 100 security groups it is recommended to have a separate security group for each server (or group of servers).
+<br>Security group membership cannot be changed while an instance is running, but the rules within the group can be changed, and will take effect immediately.
+
+<h3>Amazon Elastic Block Store (EBS)</h3>
+
+Amazon Elastic Block Store
+(EBS) provides block level storage volumes for use with Amazon EC2 instances.
+It provides highly available, highly reliable storage volumes that can be
+attached to a running Amazon EC2 instance and exposed as a device within the
+instance.
+
+<h3>Amazon EBS Volume</h3>
+
+Amazon EBS volumes are off-instance storage that persists
+independently from the life of an instance. You can create storage volumes from
+1 GB to 1 TB that can be mounted as devices by Amazon EC2 instances. Multiple
+volumes can be mounted to the same instance. Amazon EBS volumes are placed in a
+specific Availability Zone, and can then be attached to instances also in that
+same Availability Zone. Each storage volume is automatically replicated within
+the same Availability Zone. This prevents data loss due to failure of any single
+hardware component.
+
+</p>
+
+<br><br>
+
+<h2 id="creatingasecuritygroup">Setting up a Security Group</h2>
+
+
+
+Every launched instance requires that you have a security group defined to specify what network traffic is allowed to reach the instance. By default Amazon EC2 does not enable any traffic.
+
+We are going to create an IIS web server. We will create a new group called App although you can call it something that will identify the server.<br>
+
+
+1. In EC2Dream System Admin In the Environment tab click on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/rocket.png"> <br>
+2. Enter the name Base in the popup screen and  check the windows server option as this will be a Linux server.<br><br>
+
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagew20.jpg"><br><br>
+
+
+3. Press "Create" and the security group is created.<br>
+&nbsp;&nbsp;For a linux server it will allow incoming traffic from all IP address to connect to any launched instances on SSH port (22).<br>
+&nbsp;&nbsp;For a windows server it will allow incoming traffic from all IP address to connect to any launched instances on RDP port (3389).<br>
+
+4. You will see a new reference to App in the Servers in the left-hand tree panel.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image21.jpg"><br><br>
+
+
+
+<b>NOTE:</b> To add extra ports or to tighten security for the RDP port to just your client IP Address.<br>
+
+1. Click on the Base server in the tree of EC2Dream System Admin.<br>
+
+
+2.  Then click on the SecGrp tab.<br><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/imagew22.jpg"><br><br>
+
+3. Create an authorization by clicking on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"><br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image22b.jpg"><br><br>
+
+4. Revoke an authorization by clicking on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link_break.png"><br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image22c.jpg"><br><br>
+
+<br><br>
+<h2 id="launchinganinstance">Launching an Instance</h2>
+
+
+
+1. In the EC2Dream System Admin click on the Base under Servers and the launch profile tab will open.<br><br>
+
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/image23c.jpg"><br><br>
+
+2. Select the Image ID by clicking on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/magnifier.png"> and view the windows images.<br>
+Select either a windows ebs image(recommended) for example for Windows 2003 Server:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;   amazon/Windows-Server2003R2-i386-Base-v108 (ami-45c22e2c)<br>
+or for Windows 2008 Server:<br>
+   amazon/WindowsServer2008-i386-Base-v102 (ami-45c22e2c)<br>
+or an instance store image.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;     ec2-public-windows-images/Server2003r2-i386-Win-v1.06.manifest.xml<br><br>
+
+<img border=0 width=600 height=425 src="../gettingstarted/images/imagew24b.jpg"><br><br>
+
+3. Select a keypair by clicking on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/magnifier.png">.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/image26.jpg"><br><br>
+
+4. press the Launch icon <img border=0 width=20 height=20 src="../gettingstarted/icons/rocket.png"> and the launch profile is saved and the server is launched.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew26b.jpg"><br>
+
+If you refresh the server tree by pressing  refresh icon <img border=0 width=20 height=20 src="../gettingstarted/icons/arrow_refresh.png.png"> you will see it with a starting up icon <img border=0 width=25 height=25 src="../gettingstarted/icons/connect.png">  . when it is started it shows a server
+icon <img border=0 width=20 height=20 src="../gettingstarted/icons/server.png"><br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image27.jpg"><br><br>
+<br><br>
+<h2 id="connectingtotheinstance">Connecting to the Instance</h2>
+
+Click on the Base Server in the tree windows and you will be taken to the Server tab.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image28.jpg"><br><br>
+
+Click on the key icon <img border=0 width=20 height=20 src="../gettingstarted/icons/key.png"> next to the Win Admin Password field to fetch the unencrpyted password.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew28a.jpg"><br><br>
+
+Click on the Remote Desktop icon <img border=0 width=20 height=20 src="../gettingstarted/icons/desktop_empty.png"> and a Remote Desktop session will open. To switch away from Full Screen mode press CNTRL-ALT-BREAK.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew28b.jpg"><br><br>
+
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		  <div id="breadcrumb">
+		         Next: <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Using Windows Servers</a> &gt; <a href="./building_a_windows_base_image.html">Build a Windows Base Image</a>
+      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

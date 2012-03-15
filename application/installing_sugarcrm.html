@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Application</a> &gt; <a href="./installing_sugarcrm.html">Install SugarCRM</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">>Install SugarCRM</a></h2><br>
+
+1. Add ports 80 to the App security group by going to the SecGrp tab and clicking on the Make Authorization icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"><br>
+For extra security use  your client IP address. e.g. 192.66.78.50/0 IP address rather 0.0.0.0/0 which allows all IP addresses access.<br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image34.jpg"><br><br>
+
+2. Enter 80 in both the "From Port" and "To Port" fields and press "save"<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image34a.jpg"><br><br>
+
+
+3.Run the Application install script<br>
+&nbsp;&nbsp;./sugarcrm-5.2.0-installer-for-ubuntu.sh<br><br>
+
+<b>Reply to the questions</b><br><br>
+
+a. Reply with a password for the MySQL database<br><br>
+
+<img border=0 width=600 height=325 src="images/image28c.jpg"><br><br>
+
+b. Then the software (PHP5, MySQl etc)  will be installed. look for any error messages.<br>
+This will takle 5 to 10 minutes.<br>
+<img border=0 width=600 height=325 src="images/image28bc.jpg"><br><br>
+
+c. Command may disrupt existing ssh connections. Proceed with operation (y|n)?<br>
+Reply y<br><br>
+
+6. Use the Elastic IP or Public DSN from the server tab of EC2Dream in a browser to go through the Application Configuration.<br>
+eg: http://75.101.999.999/Application<br><br>
+
+a. The Application setup wizard comes up.<br><br>
+ <img border=0 width=500 height=325 src="images/sugarcrm_1.png"><br><br>
+
+b. Scroll down and click on the Next button.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_2.png"><br><br>
+
+c. Accept the license (GPL) and click on Next.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_3.png"><br><br>
+
+d. Select Typical Install and click on Next.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_4.png"><br><br>
+
+e. The database type (MySQL) should be detected.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_5.png"><br><br>
+
+f. On the Database Configuration page, fill in a name for the Application database (e.g. Application) (will be created by the installer automatically if it doesn't exist).
+The Host Name is localhost. Then fill in the username of the MySQL administrator (root) and his MySQL password (yourrootsqlpassword). Then scroll down.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_6.png"><br><br>
+
+g. Select Define user to create from the drop-down menu to create a MySQL user for Application (this user will be created by the setup wizard). Fill in a name for that user (e.g. Application) and a password. If you want to have some demo data to play with, select Yes from the Populate Database with Demo Data? drop-down menu. Click on Next afterwards.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_7.png"><br><br>
+
+h. Next fill in a password for the Application admin user (username is admin).<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_8.png"><br><br>
+
+i. Select your locale and currency settings.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_9.png"><br><br>
+
+j. You should now see a summary of your selected options. If everything's ok, click on Install.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_10.png"><br><br>
+
+k. Application is now being installed. Click on Next afterwards.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_11.png"><br><br>
+
+l. If you want you can now register to receive newsletters - this is optional.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_12.png"><br><br>
+
+m. You should now see the Application login screen. Fill in admin as the username and the password you specified in the setup wizard.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_13.png"><br><br>
+
+n. After the first login, you are asked to select your time zone. Select the right one and click on Save,<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_14.png"><br><br>
+
+o. This is how Application looks.<br><br>
+<img border=0 width=500 height=325 src="images/sugarcrm_15.png"><br><br>
+
+
+A user guide for your Application version can be found on <a href="http://www.sugarforge.org/frs/?group_id=6">http://www.sugarforge.org/frs/?group_id=6</a>.<br><br>
+
+
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+		       Next: Back to <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Back to Build an Application Image</a>
+		      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

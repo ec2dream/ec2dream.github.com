@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Application</a> &gt; <a href="./installing_openbravo.html">Install OpenBravo</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">>Install OpenBravo</a></h2>
+
+
+<br>Run the Application install script<br>
+&nbsp;&nbsp;./openbravo-installer-for-ubuntu.sh<br><br>
+
+<b>Reply to the questions</b><br><br>
+
+a. Reply Y to continue and the script will download the OpenERP software.<br><br>
+
+b. Select <Ok> on the Java License<br><br>
+
+<img border=0 width=600 height=325 src="images/openbravo_1.jpg"><br><br>
+
+c. Select <yes> to agree Java license terms<br><br>
+
+<img border=0 width=600 height=325 src="images/openbravo_1a.jpg"><br><br>
+
+d. Select OK on Configuring Postgresql<br>
+<img border=0 width=600 height=325 src="images/openbravo_2.jpg"><br><br>
+
+e. Select <OK> on Configuring openbravo-erp.<br><br>
+<img border=0 width=500 height=325 src="images/openbravo_3.jpg"><br><br>
+
+f. Select <Yes> to Begin Compilation.<br><br>
+<img border=0 width=500 height=325 src="images/openbravo_4.jpg"><br><br>
+
+g. OpenBravo is built and after 10-20 mins you should see BUILD SUCCESSFUL.<br><br>
+<img border=0 width=500 height=325 src="images/openbravo_5.jpg"><br><br>
+
+h. Add port 8880 to the App security group by going to the SecGrp tab and clicking on the Make Authorization icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"><br>
+For extra security use  your client IP address. e.g. 192.66.78.50/0 IP address rather 0.0.0.0/0 which allows all IP addresses access.<br><br>
+<img border=0 width=500 height=325 src="images/openbravo_6.jpg"><br><br>
+
+i. In a browser go to the url of openbravo. Use the Elastic IP/Public DSN from the server tab of EC2Dream. e.g. http://75.101.999.999:8880/openbravo<br><br>
+<img border=0 width=500 height=325 src="images/openbravo_7.jpg"><br><br>
+
+j. Log in using the following default ID<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;username: Openbravo<br>
+&nbsp;&nbsp;&nbsp;&nbsp;password: openbravo<br>
+
+<b>Note:</b> the login credentials are case-sensitive.<br>
+
+<img border=0 width=500 height=325 src="images/openbravo_9.jpg"><br><br>
+
+
+k. Disable the start at boot time by running the linux command:<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;update-rc.d -f openbravo-erp remove
+
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+		       Next: Back to <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Back to Build an Application Image</a>
+		      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

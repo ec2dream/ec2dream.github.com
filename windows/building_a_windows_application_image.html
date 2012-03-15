@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Windows</a> &gt; <a href="./building_a_windows_application_image.html">Build an Application Image</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">Build a Windows Application Image.</a></h2>
+
+            <p>
+   <h2>Core Concepts</h2>
+
+
+
+The sections below outline the core concepts used in this tutorial.
+
+
+
+<h3>Script</h3>
+
+
+
+Commands to run remotely on a server to perform configuration. Scripts are in powershell format.
+
+
+
+
+<h3>Amazon EBS Snapshot</h3>
+
+Amazon EBS  provides the ability to create point-in-time snapshots of volumes, which are persisted to
+Amazon S3. These snapshots can be used as the starting point for new Amazon EBS
+volumes, and protect data for long-term durability. The same snapshot can be
+used to instantiate as many volumes as you wish.
+
+</p>
+
+<br><br>
+
+<h2 id="buildabaseserver">Start an Apps Server</h2>
+
+
+1. Create a new Windows Security Group called Apps.<br><br>
+
+2. Create a Launch Profile the same a the base profile will an Image of the base image created earlier.<br><br>
+
+3. Launch the Server.<br><br>
+
+
+<h2 id="addebsvolume">Optionally add a separate EBS Volume</h2>
+
+If you wish to install you application on a mounted EBS drive then perform the following:
+
+1. In Remote Desktop run the EC2 Config service:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C:\Program Files\Amazon\Ec2ConfigSetup\EC2ConfigServiceSettings.exe<br><br>
+
+a. In the General Tag Click the set Password to enabled to continue generating random passwords for the admin user.<br>
+<b>NOTE:</b> Alternatively In Remote Desktop go to Windows security and change the Administrator password so it will be known in the future.<br><br>
+
+b. In drive mapping set the E driver to the volume App so that the EBS we create in the next step will be mounted on the E drive.<br><br>
+
+2. Edit the base_initEBS.ps1 and change the &lt;host&gt; to the server ie App so it will be formated with volume App.<br>
+<b>NOTE:</b> The volume must must the volume specified in the drive mapping in the EC2ConfigService.<br><br>
+
+3. Initialize the EBS. In Remote Desktop go into Powershell cd to C:\admin and run<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;./base_initEBS.ps1<br><br>
+
+4. Make the EBS attach at startup.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a. Run "gpedit.msc"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;b. Go to local computer setting > Computer Configuration > Windows Settings > Scripts start-up/shutdown.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;c. Double click on start-up and add the script C:\admin\mountebs.cmd<br><br>
+<br><br>
+
+5. Create a new EBS volume from a snapshot of the Window 2003 installation disk. Click on the "EBS Volumes" in the tree of EC2Dream System Admin.<br>
+Create an EBS by clicking on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png">. Select the snapshot Windows 2003 R2 Datacentre 32 bit.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew33.jpg"><br><br>
+
+6. Attach the EBS volume to the Windows 2003 Server instance. Click on the attach icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png">.<br>
+Select the volume, instance and device and press attach.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew33a.jpg"><br><br>
+<br>
+
+<h2 id="buildapplication">Build Application</h2>
+
+1. If using a separate EBS:<br>
+in the Remote Desktop of the Windows 2003 Server machine install IIS on the E Drive as per <a href="http://blog.its.ac.id/chika/2008/02/29/installing-iis-on-other-drive/">http://blog.its.ac.id/chika/2008/02/29/installing-iis-on-other-drive/</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Run c:\admin\setupiis_on_e.bat.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- When it prompts for the Installation Disk give it drive F:\Disc1\i386 Folder.<br>
+<b>NOTE:</b> An alternate approach would be to install iss on C: driver and configure the wwwroot on the E: drive.<br><br>
+
+2. Otherwise install on C:<br><br>
+<h2 id="startapplication">Start Application</h2>
+
+1. If IIS is not already started run NET START w3svc.<br>
+
+2. Copy c:\admin\index.htm to \E:\Inetpub\WWWroot<br>
+
+3. Add port 80 to the App security group by going to the SecGrp tab and clicking on the Make Authorization icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"><br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image34.jpg"><br><br>
+
+4. Enter 80 in both the "From Port" and "To Port" fields and press "save"<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image34a.jpg"><br><br>
+
+
+5. Note the Public DSN in the Server tab.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/imagew35.jpg"><br><br>
+
+6. Go into a browser and enter the Public DSN address and you should see the iis initial screen return.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew36.jpg"><br><br>
+
+<br><br>
+<h2 id="stopapplication">Stop Application</h2>
+
+In a command window on the windows 2003 server NET STOP w3svc.<br>
+
+<br><br>
+<h2 id="takeebsvolumesnapshot">Take EBS Volume Snapshot</h2>
+
+<p>Once you have formatted a
+volume and made any necessary changes, you can take a snapshot of the volume so
+that you have a point in time record of the block storage. The snapshot occurs
+asynchronously and the volume's status indicates &quot;pending&quot; until it
+completes. To complete this snapshot:</p>
+
+1. Click on "EBS Snapshots" in the tree of EC2Dream System Admin and then click on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"><br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/image39a.jpg"><br><br>
+
+2. Select the volume to snapshot and press "Yes" to confirm. This will kick off a snapshot task,<br><br>
+
+ <img border=0 width=600 height=325 src="../gettingstarted/images/image39b.jpg"><br><br>
+
+3. This which will go to "completed" status when done. You may need to click the refresh button <img border=0 width=20 height=20 src="../gettingstarted/icons/arrow_refresh.png"> to get an
+     updated status.<br><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/image39c.jpg"><br><br>
+<br><br>
+<h2 id="deleteebsvolumesnapshot">Delete EBS Volume Snapshot</h2>
+
+
+<p>To delete the Amazon EBS snapshot:</p>
+
+1. Click on the "EBS Snapshots" in the tree of EC2Dream System Admin and then click on the delete icon <img border=0 width=20 height=20 src="../gettingstarted/icons/kill.png">.<br> Select the snapshot to delete and press "Yes" to confirm.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/image39d.jpg"><br><br>
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+		       Next: <a href="../index.html">Documentation</a> &gt; <a href="./index.html">back to Using Windows Servers</a>
+      </div>
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

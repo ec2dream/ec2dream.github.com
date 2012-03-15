@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Windows</a> &gt; <a href="./building_a_windows_base_image.html">Build a Base Image</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">Build a Windows Application Image.</a></h2>
+
+            <p>
+   <h2>Core Concepts</h2>
+
+
+
+The sections below outline the core concepts used in this tutorial.
+
+
+
+<h3>Script</h3>
+
+
+
+Powershell Commands to run on a server to perform configuration.
+
+
+
+
+<h3>Amazon EBS Snapshot</h3>
+
+Amazon EBS  provides the ability to create point-in-time snapshots of volumes, which are persisted to
+Amazon S3. These snapshots can be used as the starting point for new Amazon EBS
+volumes, and protect data for long-term durability. The same snapshot can be
+used to instantiate as many volumes as you wish.
+
+</p>
+
+<br><br>
+
+<h2 id="buildabaseserver">Build a Base Server</h2>
+
+
+1. Download Software<br>
+&nbsp;a. Create a folder ps1 copy the scripts from <a href="https://github.com/neillturner/ec2dream/tree/master/scripts/windows">github</a><br>
+
+&nbsp;b. Download Powershell 1.0 from <a href="http://www.microsoft.com/windowsserver2003/technologies/management/powershell/download.mspx">http://www.microsoft.com/windowsserver2003/technologies/management/powershell/download.mspx</a> choosing either the 32 bit or 64 bit version depending if you will be running a small or large Windows 2003 Server instance.<br>
+
+&nbsp;c. Download PowerShell Community Extensions from <a href="http://pscx.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=2688">http://pscx.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=2688</a>.<br>
+
+&nbsp;d. Download 7-Zip from <a href="http://www.7-zip.org/download.html">http://www.7-zip.org/download.html</a>choosing either the 32 bit (7z465.exe) or 64 bit version (7z465-x64.msi) depending if you will be running a small or large Windows 2003 Server instance.<br>
+
+2. In EC2Dream in the Server tab access the Remote Desktop of the machine by clicking on the Remote Desktop icon. <img border=0 width=25 height=25 src="../gettingstarted/icons/desktop_empty.png">. To switch away from Full Screen mode press CNTRL-ALT-BREAK.<br>
+<b>NOTE:</b> Make sure you have a Win Admin Password specified.<br><br>
+
+<img border=0 width=600 height=375 src="../gettingstarted/images/imagew28a.jpg"><br><br>
+
+3. In Remote Desktop create C:\admin<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;- powershell 1.0 install executable,  downloaded in step 1 and install on the windows server instance.<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;- powershell community extensions install executable downloaded in step 1 and install on the windows server instance.<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;- 7-zip executables downloaded in step 1. Install 7-Zip by running 7z465.exe (32 bit servers) or 7z465-x64.msi (64 bit servers).<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;- Copy EC2DreamBase_ps1.zip and unzip to C:\admin. Files should be directly under C:\admin<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;- the private key and cert files from the Amazon EC2 to C:\admin.<br><br>
+
+4. In Remote Desktop edit the settings.ps1 file and set parameters EC2_PRIVATE_KEY, EC2_CERT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY  correctly for your EC2 user.<br><br>
+
+5. In Remote Desktop relax the Default Execution Policy on the instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a. run regedit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;b. go to Local Machine\Software\Microsoft\Powershell\1\ShellIds\Microsoft.Powershell<br>
+&nbsp;&nbsp;&nbsp;&nbsp;c. Add a new String key ExecutionPolicy with value Unrestricted<br><br>
+
+6. Run the EC2 Config service: C:\Program Files\Amazon\Ec2ConfigSetup\EC2ConfigServiceSettings.exe<br>
+
+a. In the General Tag Click the set Password to enabled to continue generating random passwords for the admin user.<br>
+<b>NOTE:</b> Alternatively In Remote Desktop go to Windows security and change the Administrator password so it will be known in the future.<br><br>
+
+b. In drive mapping set the E driver to the volume App so that the EBS we create in the next step will be mounted on the E drive.<br><br>
+
+7. Script base_build.ps1 is provide to add extra requirements for the base build of the server.
+
+<br><br>
+<br><br>
+
+<h2 id="crfeateimage">Create a Server Image</h2>
+
+1.. For EBS Images create an Image by pressing on the Create Image button in the server tab.<br>
+  insert image<br><br>
+
+2. For Instance Store Images</a>
+
+<b>NOTE:</b> Make sure you have logged off the Remote Desktop connection to the machine before doing a bundle.<br><br>
+
+a. Install Powershell and Powershell Community Extensions on Client. These should have been downloaded ealier in the the Building a Windows 2003 Server section. Also make sure .Net 2.0 or above is installed on your client PC.<br><br>
+
+b. Configure and run bundle.ps1 in the ps1 folder<br><br>
+
+<b>NOTE:</b> Make sure you log off remote desktop before running this script.<br><br>
+
+
+<b>NOTE:</b> It can take 20 minutes to bundle an image.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew46.jpg"><br><br>
+
+c. If bundling was sucessfully there should be a message "*** Registered Image ami-xxxxxxxxx"<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew47.jpg"><br><br>
+
+3. After creating the image update the launch profile Image Id field of the Base Server so it will be used next time the Base Server is launch.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew48.jpg"><br><br>
+
+<b>NOTE:</b> It is always a good idea to test that bundles work by starting the server.<br><br>
+
+
+<br><br>
+<h2 id="terminatingyourinstance">Terminating your Instance</h2>
+
+<b>NOTE:</b> Make sure you log off remote desktop before terminating the instance.<br><br>
+
+1. Click on the server Base in the server tree view.<br><br>
+
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagew49.jpg"><br><br>
+
+2. In the server tab click on the terminate icon <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">.<br><br>
+
+3. Press the refresh icon <img border=0 width=20 height=20 src="../gettingstarted/icons/arrow_refresh.png"> and you will see the status on the server change.<br><br>
+
+<img border=0 width=600 height=300 src="../gettingstarted/images/imagew49a.jpg"><br><br>
+
+When it is shut down the status goes to <img border=0 width=20 height=20 src="../gettingstarted/icons/stop.png"><br>
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+		       Next: <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Windows</a> &gt; <a href="./building_a_windows_application_image.html">Build an Application Image</a>
+      </div>
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

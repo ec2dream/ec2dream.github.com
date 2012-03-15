@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="../index.html">Amazon EC2</a> &gt; <a href="./setting_up_ec2.html">Setup Up EC2 Account</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="../index.html">Setup an Amazon AWS Account</a></h2>
+
+            <p>
+		    <br><br>
+To use Amazon EC2, you must sign up for an Amazon Web Services (AWS) Account<br><br>
+For information on obtaining an AWS Account, go to the Amazon AWS Home Page (<a href="http://aws.amazon.com">http://aws.amazon.com</a>) and press the "Signup Now" button.<br><br>
+
+</p></p><p>
+
+        <h2><a href="../index.html">Setup a Eucalyptus Account</a></h2>
+
+            <p>
+Eucalyptus is an acronym for Elastic Computing Architecture for Linking Your Programs to Useful Systems.  Eucalyptus is an open source implementation of an Infrastructure as a Service (IaaS).  It is a web services based implementation of a cloud computing infrastructure.
+
+</p><p>Those familiar with Amazon's EC2 system will find most of these instructions familiar because Eucalyptus is compatiable with the Eucalyptus API and therefore fully functions
+
+with the EC2Dream System Admin.
+
+
+
+</p>
+
+<h3 id="signup">Signup</h3>
+
+
+<p>
+If you are using the Eucalyptus Community Cloud <a href="http://open.eucalyptus.com/CommunityCloud">signup</a>, and then use <a href="https://ecc.eucalyptus.com:8443/#login">https://ecc.eucalyptus.com:8443/#login</a> to apply for an account.
+</p>
+<p>
+<strong>Load</strong> in your browser the Web page of the Eucalyptus
+cloud installation that you would like to use. Ask your system
+administrator for the URL if you don't know it. (The URL will be of the
+form <i><a class="ext-link" href="https://your.cloud.server:8443/"><span class="icon">https://your.cloud.server:8443/</span></a></i>, where <i>your.cloud.server</i> is likely to be the front-end of the cluster.)
+</p>
+<img src="images/login.png" alt="login.png" class="euca-screenshot" title="login.png">
+<p>
+<strong>Click</strong> the "Apply" link and fill out the form presented
+to you. You may not be able to use the system until the (human)
+administrator receives the notification of your application and
+approves it. The more information you supply the easier it may be for
+the administrator to make the decision.
+</p>
+<img src="images//signup.png" alt="signup.png" class="euca-screenshot" title="signup.png">
+<p>
+<strong>Load</strong> the confirmation URL that you receive in the approval email message from the cloud administrator.  <strong>Log in</strong> to the system with the login and password that you chose when filling out the application form.
+</p>
+<img src="images//confirm_link.png" alt="confirm_link.png" class="euca-screenshot" title="confirm_link.png">
+<h3 id="obtaincredentials">Obtain Credentials</h3>
+<p>
+Once you have logged in, you will see the 'Generate Certificate' button
+under the 'Credentials' tab. Generating a certificate for your account is
+necessary before you can use EC2Dream Graphical System Admin for
+querying and controlling Eucalyptus instances. Currently, the Web interface
+to Eucalyptus is limited and, hence, the use EC2Dream Graphical System Admin is very useful.
+</p>
+<p>
+<img src="images//credentials1.png" alt="credentials1.4.png" class="euca-screenshot" title="credentials1.4.png">
+</p>
+<p>
+<strong>Click</strong> the button to generate the certificate and save it.  You can keep
+these keys in a secure place on any host. The following command-line
+instructions apply to any Unix-flavored machine with bash (not necessarily the
+cluster where Eucalyptus was installed).
+</p>
+<p>
+<strong>Unzip</strong> the keys using the following command and <strong>protect</strong> them from exposure. The zip-file contains two files with the .pem extension; these are your
+public and private keys.
+</p>
+<pre class="wiki">mkdir ~/.euca
+cd ~/.euca
+unzip name-of-the-key-zip.zip
+chmod 0700 ~/.euca
+chmod 0600 ~/.euca/*
+
+</p>
+
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+				       Next: <a href="../index.html">Documentation</a> &gt; <a href="../index.html">Amazon EC2</a> &gt; <a href="./create_an_environment.html">Create an Environment</a>
+      </div>
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

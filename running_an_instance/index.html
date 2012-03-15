@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Run an Instance</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">Run an Instance</a></h2>
+            <p>
+
+<br><br>
+<h2 id="creatingasecuritygroup">Setting up a Security Group</h2>
+
+
+
+Every launched instance requires that you have a security group defined to specify what network traffic is allowed to reach the instance. By default Amazon EC2 does not enable any traffic.
+
+We will create a new group called App. You might like to call the group another name that identifies your application.<br>
+
+
+
+1. In EC2Dream System Admin Click on Security Groups in the left hand tree to go into the SecGrp panel then click on the New button <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> <br>
+2. Create a Security Group called Base and don't check the windows server option as this will be a Linux server.<br><br>
+
+
+<img border=0 width=600 height=275 src="./images/image20.jpg"><br><br>
+
+
+
+3. Press "Create" and the security group is created.<br>
+&nbsp;&nbsp;For a linux server it will allow incoming traffic from all IP address to connect to any launched instances on SSH port (22).<br>
+&nbsp;&nbsp;For a windows server it will allow incoming traffic from all IP address to connect to any launched instances on RDP port (3389).<br>
+
+4. You will see a new reference to Base in the Servers in the left-hand tree panel.<br><br>
+
+<img border=0 width=600 height=225 src="./images/image21.jpg"><br><br>
+
+<b>NOTE:</b> To add extra ports or to tighten security for the SSH port to just your client IP Address.<br><br>
+
+5. Authorizations are created by clicking on the <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"> icon.<br><br>
+
+<img border=0 width=600 height=225 src="./images/image22b.jpg"><br><br>
+
+6. Authorizations are revoked by clicking on the <img border=0 width=20 height=20 src="../gettingstarted/icons/link_break.png"> icon.<br><br>
+
+<img border=0 width=600 height=225 src="./images/image22c.jpg"><br><br>
+
+<br><br>
+
+<h2 id="launchinganinstance">Launching an Instance</h2>
+
+1. In the EC2Dream System Admin click on the Base under Servers and the launch profile tab will open.<br><br>
+
+<img border=0 width=600 height=375 src="./images/image23c.jpg"><br><br>
+
+2. Select the Image ID by clicking on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/magnifier.png">.<br>
+For <b>Ubuntu</b> view the alestic images and select the latest ubuntu base image e.g. 063491364108/alestic-git-server-ubuntu-10.10-maverick-i386-20110322 (ami-1250a27b).<br>
+For <b>CentOS</b> view the rightscale images and select the latest rightscale image rightscale-us/CentOS5_2V4_1_10.manifest.xml<br><br>
+
+<img border=0 width=500 height=325 src="images/image23b.jpg"><br><br>
+
+3. Select a keypair by clicking on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/magnifier.png">.<br><br>
+
+<img border=0 width=600 height=325 src="./images/image26.jpg"><br><br>
+
+4. Select an Availability Zone<br><br>
+
+<img border=0 width=600 height=325 src="./images/image26a.jpg"><br><br>
+
+
+5.  Press the Launch icon <img border=0 width=20 height=20 src="../gettingstarted/icons/rocket.png"> and the launch profile is saved and the server is launched.<br><br>
+
+<img border=0 width=600 height=325 src="./images/image26b.jpg"><br>
+
+If you refresh the server tree by pressing  refresh icon <img border=0 width=20 height=20 src="../gettingstarted/icons/arrow_refresh.png.png"> you will see it with a starting up icon <img border=0 width=25 height=25 src="../gettingstarted/icons/connect.png">  . when it is started it shows a server
+icon <img border=0 width=20 height=20 src="../gettingstarted/icons/server.png"><br><br>
+
+<img border=0 width=600 height=225 src="./images/image27.jpg"><br><br>
+<br><br>
+<h2 id="connectingtotheinstance">Connecting to the Instance</h2>
+If using ubuntu in the server panel update the EC2 SSH User to ubuntu as the root user is protected from logon.<br>
+
+In the Server panel click on the terminal icon <img border=0 width=20 height=20 src="../gettingstarted/icons/monitor.png"> and a PuTTY session will open (or on Linux or Mac OS X a ssh session).<br><br>
+
+<img border=0 width=600 height=325 src="images/image28a.jpg"><br><br>
+
+Click on the WinSCP icom <img border=0 width=20 height=20 src="../gettingstarted/icons/application_put.png"> and a WinSCP session will open (or on Linux or Mac OS X a scp command will display).<br><br>
+
+<img border=0 width=600 height=325 src="./images/image28b.jpg"><br><br>
+
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+				       Next: <a href="../index.html">Documentation</a> &gt; <a href="../index.html">Amazon EC2</a> &gt; <a href="../gettingstarted/building_a_base_image.html">Build a Base Image</a>
+		      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

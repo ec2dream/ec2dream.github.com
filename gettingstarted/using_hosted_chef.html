@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./using_hosted_chef.html">Using Hosted Chef</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./index.html">Using Hosted Chef</a></h2>
+            <p>
+
+<br><br>
+<h2 id="signupforhostedchef">Setup for Hosted Chef</h2>
+
+
+
+1. Find the location of Chef Repository in the EC2Dream Settings panel.<br><br>
+
+2. For Windows clients follow the  <a href="http://wiki.opscode.com/display/chef/Workstation+Setup+for+Windows">Chef Workstation Setup for Windows</a><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;NOTE: For Windows you can alternatively install the chef workstation into your current ruby:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a. Download the Ruby Devkit from http://rubyinstaller.org/downloadsDevKit. At time of writing latest version is:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;b. Unzip to a folder<br>
+&nbsp;&nbsp;&nbsp;&nbsp;c. In a windows command window cd the the folder and run<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ruby dk.rb init<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        ruby dk.rb install<br>
+&nbsp;&nbsp;&nbsp;&nbsp;d. Run:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install ruby-wmi<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install win32-process<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install win32-service<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install win32-open3  (only for Ruby 1.8.7)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install chef<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;NOTE: When installing ruby-wmi if you get error:&nbsp;&nbsp;SyntaxError: C:/installs/ruby19_mingw/lib/ruby/gems/1.9.1/gems/ruby-wmi-0.2.2/lib/ruby-wmi/base.rb:52: syntax error, unexpected :, expecting keyword_then or , or ; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;Then edit the file ruby-wmi/base.rb, lines 52 and 53 and change :'s to ;'s<br><br>
+
+3. For Other clients follow either:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://wiki.opscode.com/display/chef/Workstation+Setup+for+Debian+and+Ubuntu">Workstation Setup for Debian and Ubuntu</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://wiki.opscode.com/display/chef/Workstation+Setup+for+CentOS%2C+Red+Hat%2C+Fedora">Workstation Setup for CentOS, Red Hat, Fedora</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://wiki.opscode.com/display/chef/Workstation+Setup+for+Mac+OS+X">Workstation Setup for Mac OS X</a><br><br>
+
+c. Uupload the apache2 cookbook from the Chef Repository.<br><br>
+<h2 id="buildabaseserver">Build a Base Server for Hosted Chef</h2>
+
+1. Edit cookbooks/base_hosted/attributes/default.rb and change the atributes ORGANIZATION to your organization in Hosted Chef.<br>
+   Copy your organisation verification key file to the cookbooks/base_hosted/attributes/default directory<br><br>
+
+2. Launch a new base server and when running specify in the Server panel a Chef Node of 'base_hosted' then press the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the base_hosted cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
+
+3. Create a Base_hosted Image<br>
+   a. For EBS Images create an Image by pressing on the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png"> in the server tab.<br>
+ <img border=0 width=600 height=325 src="../gettingstarted/images/image30d.jpg"><br><br>
+
+   b. For Instance Store Images:<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;   -Configure an run the bundle.rb script on the server<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;   -Register the image by pressing the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png">in the server tab.<br><br>
+
+4. Shutdown the server by pressing the Terminate button <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">in the server tab.<br> and update the base launch profile with the new image.<br>
+
+   <img border=0 width=600 height=225 src="../gettingstarted/images/image30g.jpg"><br><br>
+
+<h2 id="runthe application">Run the application</h2>
+
+1. Create or update the launch profile for App with an Image id for the Base_hosted Image created earlier and specify in the user data:<br>
+&nbsp;&nbsp;&nbsp;chef_run_list=recipe[apache2]<br><br>
+
+2. Launch the server and the apache2 application will install at startup<br><br>
+
+3. The apache is running by going to a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
+   For ubuntu servers you will see an initial server like:<br><br>
+
+<img border=0 width=400 height=150 src="../gettingstarted/images/chef_apache.png"><br>
+
+ and for Centos:<br><br>
+<img border=0 width=400 height=225 src="../gettingstarted/images/centos_apache_welcome.jpg"><br><br>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+                      Back: <a href="../index.html">Back to Documentation</a>
+				      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2010 ElastDream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>
