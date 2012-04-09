@@ -15,7 +15,7 @@
 <body>
   <div id="header">
     <div id="headerimg">
-	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
 	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
 </div>
 	</div>
@@ -24,7 +24,7 @@
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
-		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
 		</ul>
 	</div>
@@ -56,57 +56,13 @@ For extra security use  your client IP address. e.g. 192.66.78.50/0 IP address r
 
 3. Do the same for port 443<br><br>
 
-4. Go to the server tab click on the terminal icon <img border=0 width=20 height=20 src="../gettingstarted/icons/monitor.png"> and a PuTTY session will open.<br><br>
+4. Download the magento cookbook from <a href="http://community.opscode.com/cookbooks/magento">http://community.opscode.com/cookbooks/magento</a> and unzip into the
+cookbook folder of your chef repository. Create node and role files for magento in the chef repository similar to the apache2.json files.<br><br>
+
+5. When you have a server running from your base image go to the EC2Dream server tab and enter magento into the chef node. click on the chef icon <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the magento cookbook.<br><br>
+replace this image
 <img border=0 width=600 height=325 src="images/image28a.jpg"><br><br>
 
-5. Run the Magento install script<br>
-&nbsp;&nbsp;./Magento-1.3.2.3-installer-for-ubuntu.sh<br><br>
-
-<b>Reply to the questions</b><br><br>
-
-a. Do you want to update your Ubuntu packages? (Y/n):<br>
-Reply - n<br><br>
-
-b. Press ENTER for default one (language-pack-gnome-es-base)<br>
-Reply - ENTER<br><br>
-
-c. Press ENTER for default one (127.0.1.1)<br>
-Enter the Elastic IP address setup earlier in section <a href="./associating_an_elastic_ip.html#creatinganeweip">Creating a new Elastic IP</a><br>
-It is also displayed in the Server tab of EC2Drean<br>
-Reply for example - 75.101.999.999<br><br>
-
-d. Enter DNS name for your URL:<br>
-Press ENTER for default one (magentoshop.com)<br>
-Reply with the elastic ip address for example - 75.101.999.999<br>
-or reply with url if you have the IP configured in a DNS server as a URL  - www.mysite.com <br><br>
-
-e. Reply by pressing Enter to take the defaults for the above questions<br>
-Magento Admin Username (Default=admin):<br>
-Magento Admin Password (Default=password):<br>
-Magento Admin First Name:<br>
-Magento Admin Last Name:<br>
-Magento Admin Email Address:<br><br>
-
-
-f. Include Sample Data in Magento? (Y/n) Press ENTER for default one (Yes)<br>
-Reply Enter<br><br>
-
-Then the software (PHP5, MySQl etc)  will be installed. look for any error messages.<br>
-This will takle 5 to 10 minutes.<br>
-<img border=0 width=600 height=325 src="images/image28bc.jpg"><br><br>
-
-
-g. Reply with a password for the MySQL database<br><br>
-
-<img border=0 width=600 height=325 src="images/image28c.jpg"><br><br>
-
-h. ---------------------------------------------------------------------<br>
-Enter again your MySQL "root" Administrator Password:<br>
----------------------------------------------------------------------<br>
-Reply with the root password<br><br>
-
-i. Command may disrupt existing ssh connections. Proceed with operation (y|n)?<br>
-Reply y<br><br>
 
 6. In a browser go to the Elastic IP/magento from the server tab of EC2Dream and go through the Magento Configuration.<br>
 eg: http://75.101.999.999/magento<br><br>
@@ -179,7 +135,7 @@ g. Retest by pressing "Go to Front End" to test and you should have a working De
 
 <div id="credits">
 	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
-	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
 </div>
 
 </div>

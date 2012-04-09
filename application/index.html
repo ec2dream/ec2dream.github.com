@@ -15,7 +15,7 @@
 <body>
   <div id="header">
     <div id="headerimg">
-	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
 	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
 </div>
 	</div>
@@ -24,7 +24,7 @@
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
-		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
 		</ul>
 	</div>
@@ -40,7 +40,7 @@
 
     <div class="post" >
 	  <div class="entry">
-        <h2><a href="./index.html">Build an Application</a></h2>
+        <h2><a href="../index.html">Build an Application</a></h2>
 
             <p>
 
@@ -126,6 +126,8 @@ NOTE: Make sure to remove init_ebs=y before subsequent launches of the server<br
 
 <img border=0 width=600 height=325 src="../gettingstarted/images/image30h.jpg"><br><br>
 
+<b>NOTE:</b> Alternatively specify in the user data of the server chef_solo_run_list=recipe[apache2]  and chef solo will run at startup using the cookbooks in the base server<br><br>
+
 3. The App cookbook installs and runs apache so to test go into a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
    For ubuntu servers you will see an initial server like:<br><br>
 
@@ -142,17 +144,17 @@ NOTE: Make sure to remove init_ebs=y before subsequent launches of the server<br
     c. Deploy the image to a source control system like Github and have the servers load the application cookbook at startup and install.<br><br>
 
 
-5. There are some install scripts not currently in cookbooks. To run these open the required ports in the App security group, logon to the App server and run the Application install script:<br><br>
+5. For some popular applications follow the following instructions to install from their cookbooks :<br><br>
 
 &nbsp;&nbsp;&nbsp;For Alfresco see  <a href="./installing_alfresco.html">Install Alfresco</a><br><br>
 
 &nbsp;&nbsp;&nbsp;For Magento see  <a href="./installing_magento.html">Install Magento</a><br><br>
 
-&nbsp;&nbsp;&nbsp;For OpenBravo see  <a href="./installing_openbravo.html">Install OpenBravo</a><br><br>
+&nbsp;&nbsp;&nbsp;For OpenBravo see  <a href="./installing_openbravo.html">Install OpenBravo</a>. Currently no cookbook install from script at <a href="https://github.com/neillturner/ec2dream/tree/master/scripts/applications">https://github.com/neillturner/ec2dream/tree/master/scripts/applications</a>)<br><br>
 
-&nbsp;&nbsp;&nbsp;For SugarCRM see  <a href="./installing_sugarcrm.html">Install SugarCRM</a><br>
+&nbsp;&nbsp;&nbsp;For SugarCRM see  <a href="./installing_sugarcrm.html">Install SugarCRM</a><br><br>
 
-You will find the scripts at <a href="https://github.com/neillturner/ec2dream/tree/master/scripts/applications">https://github.com/neillturner/ec2dream/tree/master/scripts/applications</a><br><br>
+
 
 
 6. To automate the start and stop of the application add the relevant application command to the /etc/rc.local and /etc/rc6.d files.<br><br>
@@ -202,7 +204,7 @@ You will find the scripts at <a href="https://github.com/neillturner/ec2dream/tr
 
 <div id="credits">
 	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
-	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
 </div>
 
 </div>

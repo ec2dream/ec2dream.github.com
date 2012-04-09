@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="../print.css" type="text/css" media="print" />
 <link href='../favicons.ico' rel='shortcut icon'/>
 <link href='../favicons.ico' rel='icon'/>
-
 </head>
 <body>
   <div id="header">
@@ -34,36 +33,47 @@
 <div id="wrapper">
 <div id="page">
   <div id="content">
-
 <div id="breadcrumb">
-       <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Amazon RDS</a> &gt; <a href="enable_rds.html">Enable RDS in EC2Dream</a>
+       <a href="../index.html">Documentation</a> &gt; <a href="../index.html">Amazon EC2</a> &gt; <a href="./cloud_formation.html">Cloud Formation</a>
       </div>
+
     <div class="post" >
 	  <div class="entry">
-        <h2><a href="enable_rds.html">Enable RDS in EC2Dream</a></h2>
+        <h2><a href="./cloud_formation.html">Cloud Formation</a></h2>
 
-<p>
+<h3 id="introtag"></h3>
+    Cloud Formation lets you create a JSON format configuration file to specify the different Amazon Servers and other services that you wish  to run. You can specify the chef command in the user data of a EC2 instance request to provision the server when it starts.<br><br>
 
-To enable Amazon RDS in EC2Dream the Amazon RDS URL must be configured.<br>
 
-1. In the EC2Dream System Admin click on Settings in the tree view and in the Settings tab set AMAZON RDS URL. Press the
-<img border=0 width=20 height=20 src="../gettingstarted/icons/magnifier.png"> icon to get a list of Amazon RDS URLs to select.<br><br>
+<h3 id="linuxserver">Create a Cloud Formation Template</h3>
 
-<img border=0 width=600 height=375 src="./images/image19a.jpg"><br><br>
+ 1. Select Cloud Formation Templates from the EC2Dream tree and press the New button.<img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/image70.jpg"><br><br>
+ 2. Specify the stack name and a template file. By default there is a test stack template file. Change this to your own file and create the configuration.<br><br>
 
-2. Then press "Save Settings" and restart EC2Dream and extra RDS entries will appear in the tree view.<br><br>
+ 3. Edit the template file by selecting the stack pressing the Edit button.<img border=0 width=20 height=20 src="../gettingstarted/icons/application_view_icons.png"><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/image71.jpg"><br><br>
+ 4. Validate the template by selecting te stack and pressing the validate button.<img border=0 width=20 height=20 src="../gettingstarted/icons/spellcheck.png"><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/image72.jpg"><br><br>
+<h3 id="localserver">Run a Cloud Formation stack</h3>
 
-<img border=0 width=600 height=375 src="./images/image19b.jpg"><br><br>
+ 1. Run the stack by selecting the stack and pressing  the launch button.<img border=0 width=20 height=20 src="../gettingstarted/icons/rocket.png"><br>
+ 2. You will then see the status of the running stack.<br>
+ <img border=0 width=600 height=225 src="../gettingstarted/images/image73.jpg"><br><br>
+ 3. To terminate the stack press the stop button.<img border=0 width=20 height=20 src="../gettingstarted/icons/cancel.png"><br><br>
 
- 		<p>
-        </p>
-    </p>
+
+
+<h3 id="localserver">View Cloud Formation Events</h3>
+ 1. select the stack name and press the events button.<img border=0 width=20 height=20 src="../gettingstarted/icons/events.png"><br><br>
+ <img border=0 width=600 height=225 src="../gettingstarted/images/image74.jpg"><br><br>
 
 		</div>
 		<div class="post-content">
 		<div id="breadcrumb">
-				       Next: <a href="../index.html">Documentation</a> &gt; <a href="./index.html">Amazon RDS</a> &gt; <a href="./create_db_security_group.html">Create DB Security Group</a>
-      </div>
+                      Back: <a href="../index.html">Back to Documentation</a>
+				      </div>
+
 		</div>
 		<div class="post-info">
 		</div>

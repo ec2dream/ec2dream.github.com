@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./using_local_servers.html">Local Servers for Cookbook Development</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./using_local_servers.html">Local Servers for Cookbook Development</a></h2>
+
+<h3 id="introtag"></h3>
+    A good way to do chef cookbook development is against virtual servers on your desktop machine or your local network. This can reduce the cost
+    of cookbook development on cloud servers where you pay an hourly charge for ever time you start a server. Once you have the cookbook developed
+    you can can then run it on a cloud server and then do integration testing with the other servers in your stack.<br><br>
+
+
+<h3 id="linuxserver">Setup a running linux server</h3>
+
+ First you need a running linux server for testing.
+ I followed  <a href="http://www.howtogeek.com/howto/11287/how-to-run-ubuntu-in-windows-7-with-vmware-player/">http://www.howtogeek.com/howto/11287/how-to-run-ubuntu-in-windows-7-with-vmware-player</a> but the following instructions will work for other environments.<br>
+ <br>
+ 1. Install Virtalisation Software<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;Download and install VMWare player from <a href="http://www.vmware.com/products/player/">http://www.vmware.com/products/player/</a> or directly from<br>
+ <a href="http://downloads.vmware.com/d/info/desktop_end_user_computing/vmware_player/4_0">http://downloads.vmware.com/d/info/desktop_end_user_computing/vmware_player/4_0</a><br>
+ or download oracle virtualbox<br><br>
+
+ 2. Download a linux image<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;I used ubuntu 11.10 server from <a href="http://www.thoughtpolice.co.uk/vmware/">http://www.thoughtpolice.co.uk/vmware</a><br><br>
+
+ 3. Unzip into a directory and execute the vmx file to start it<br><br>
+
+ 4. Set network as NAT in the VMplayer settings<br><br>
+
+ 5. Logon as user notroot password: thoughtpolice<br><br>
+
+ 6. Use ifconfig to check you have ip address and make a note of the address ie 192.168.155.12<br><br>
+
+ 7. Install ssh<br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get update<br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install openssh-server<br>
+
+    and then restart the server<br><br>
+
+ 8. Suppress the root password when doing sudo command<br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;sudo visudo<br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;Add this line at the end:<br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;notroot ALL=(ALL) NOPASSWD: ALL<br>
+
+   &nbsp;&nbsp;&nbsp;&nbsp;Then enter Ctrl-X to leave, save the changes<br><br>
+
+ 9. We now have a working linux server. You might like to take a backup
+  copy of the directory.<br><br>
+
+
+<h3 id="localserver">Create a local server in EC2Dream</h3>
+
+ 1. In the tree in EC2Dream click on Local Servers and then click new button to create a local server definition.<br>
+ <img border=0 width=600 height=225 src="../gettingstarted/images/image80.jpg"><br><br>
+ 2. Give the server a name and enter the IP address noted earlier. (If you leave out the ip address EC2Dream will use the server name to access the server)<br>
+    I entered:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Server: ubuntu<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;IP Address: 192.168.144.129<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Chef Node: App<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;SSH user: notroot<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;SSH password: thoughtpolice<br><br>
+ 3. Test you can access the server via ssh by pressing the terminal button.<img border=0 width=20 height=20 src="../gettingstarted/icons/monitor.png"><br><br>
+ 4. Press the chef button and install the App node on the server.<img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"><br><br><br>
+ 5. Test apache works in the browser by entering the ip address in the browser.<br><br>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+                      Back: <a href="../index.html">Back to Documentation</a>
+				      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

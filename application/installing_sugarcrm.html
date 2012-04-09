@@ -15,7 +15,7 @@
 <body>
   <div id="header">
     <div id="headerimg">
-	  <h1><a href="http://ec2dream.webs.com">Build and Manage EC2 API Clouds</a></h1>
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
 	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
 </div>
 	</div>
@@ -24,7 +24,7 @@
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
-		  <li class="page_item"><a href="http://ec2dream.webs.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
 		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
 		</ul>
 	</div>
@@ -51,24 +51,13 @@ For extra security use  your client IP address. e.g. 192.66.78.50/0 IP address r
 
 <img border=0 width=600 height=225 src="../gettingstarted/images/image34a.jpg"><br><br>
 
+3. Download the magento cookbook from <a href="http://community.opscode.com/cookbooks/sugarcrm">http://community.opscode.com/cookbooks/sugarcrm</a> and unzip into the
+cookbook folder of your chef repository. Create node and role files for sugarcrm in the chef repository similar to the apache2.json files.<br><br>
 
-3.Run the Application install script<br>
-&nbsp;&nbsp;./sugarcrm-5.2.0-installer-for-ubuntu.sh<br><br>
+4. When you have a server running from your base image go to the EC2Dream server tab and enter sugracrm into the chef node. click on the chef icon <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the magento cookbook.<br><br>
+***add image***<br><br>
 
-<b>Reply to the questions</b><br><br>
-
-a. Reply with a password for the MySQL database<br><br>
-
-<img border=0 width=600 height=325 src="images/image28c.jpg"><br><br>
-
-b. Then the software (PHP5, MySQl etc)  will be installed. look for any error messages.<br>
-This will takle 5 to 10 minutes.<br>
-<img border=0 width=600 height=325 src="images/image28bc.jpg"><br><br>
-
-c. Command may disrupt existing ssh connections. Proceed with operation (y|n)?<br>
-Reply y<br><br>
-
-6. Use the Elastic IP or Public DSN from the server tab of EC2Dream in a browser to go through the Application Configuration.<br>
+5. Use the Elastic IP or Public DSN from the server tab of EC2Dream in a browser to go through the Application Configuration.<br>
 eg: http://75.101.999.999/Application<br><br>
 
 a. The Application setup wizard comes up.<br><br>
@@ -168,7 +157,7 @@ A user guide for your Application version can be found on <a href="http://www.su
 
 <div id="credits">
 	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
-	<div class="alignleft">Copyright &copy; 2009 ElastDream. All rights reserved.</div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
 </div>
 
 </div>
