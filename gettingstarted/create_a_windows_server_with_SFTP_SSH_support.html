@@ -81,41 +81,40 @@ To support chef solo and one click testing of chef cookbooks we need a to be abl
 <img border=0 width=400 height=325 src="../gettingstarted/images/firewall.png"><br><br>
 
 
-5. Change the Administrator Password. (administrative tools -> computer Management).
+5. Change the Administrator Password. (Administrative Tools -> Computer Management).
    Click on Local Users and Groups. Click on Users. Right Click on Administrator and select Set Password.<br>
 
    <img border=0 width=600 height=265 src="../gettingstarted/images/change_password.png"><br><br>
 
-6. set the computer name:<br>
+6. Set the computer name:<br>
    &nbsp;&nbsp;&nbsp;&nbsp;Go to C:\Program Files\Amazon\EC2ConfigService and double-click the Ec2ConfigServiceSettings application.<br>
 
    &nbsp;&nbsp;&nbsp;Your Windows instance displays the Ec2 Service Properties dialog box.<br>
 
-   &nbsp;&nbsp;&nbsp;in the general tab make sure set the compute name of the instance to ip....<br>
+   &nbsp;&nbsp;&nbsp;in the general tab make sure that set the compute name is checked.<br>
 
     <img border=0 width=300 height=325 src="../gettingstarted/images/ec2_config.png"><br><br>
 
-7. stop the server and start the serverto get the ec2 configure changed.<br>
+7. Stop and start the server to get the ec2 configure changed.
 
 See <a href="http://docs.amazonwebservices.com/AWSEC2/2011-07-15/WindowsGuide/index.html?UsingConfig_WinAMI.html">Using EC2Config Service</a><br><br>
 
 <h2 id="installwinsshdServer">Install WinSSHD Server</h2><br><br>
 
-To work with chef we need an SFTP Server that works on Windows 2008 and support SFT and SSH shell.
-There are alot of old SFTP servers for windows out here but the only free one I was able to make work in Windows 2008 as support SFTP file transfer and SSH remote commands and was <a href="http://www.bitvise.com/winsshd">WinSSHD</a>.<br><br>
+To work with chef we need an SFTP Server that works on Windows 2008 and supports SFTP and SSH shell.
+There are alot of old SFTP servers for windows out here but the only free one I was able to make work in Windows 2008 to support both SFTP file transfer and SSH remote commands was <a href="http://www.bitvise.com/winsshd">WinSSHD</a>.<br><br>
 
+1. Download the the WinSSHD 5 installer from a href="http://www.bitvise.com/winsshd-download">http://www.bitvise.com/winsshd-download</a><br><br>
 
-6. download the the WinSSHD 5 installer from a href="http://www.bitvise.com/winsshd-download">http://www.bitvise.com/winsshd-download</a><br><br>
+2. Run the installer taking the defaults and install the free version.<br><br>
 
-7. Run the installer taking the defaults and install the free version.<br><br>
-
-8. Go into the winSSHD management console and start the winSSHD server.<br>
+3. Go into the WinSSHD management console and start the WinSSHD server.<br>
 
 <img border=0 width=400 height=525 src="../gettingstarted/images/winsshd.png"><br><br>
 
-9. Test you can access the SFTP server using say WinSCP.<br><br>
+4. Test you can access the SFTP server using say WinSCP.<br><br>
 
-10. Create a amazon machine image<br><br>
+5. Create a amazon machine image.<br><br>
 
 Documentation on WinSSHD is available at <a href="http://www.bitvise.com/winsshd-doc-printable">http://www.bitvise.com/winsshd-doc-printable</a><br><br>
 
@@ -124,7 +123,7 @@ NOTE: if you get error HostKeyMismatch trying to access the windows server via W
 
 on your PC go to C:\Users\<user>\.ssh and delete the known_hosts file.<br><br>
 
-NOTE: THis setup uses password access to SFTP and SSH. It is also possible instead to setup public key. See the WinSSHD docs for details.
+NOTE: This setup uses password access to SFTP and SSH. It is also possible instead to setup public key. See the WinSSHD docs for details.
 
 
  		<p>
