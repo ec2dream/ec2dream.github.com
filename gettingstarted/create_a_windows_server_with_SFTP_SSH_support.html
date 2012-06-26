@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
+	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./create_a_windows_server_with_SFTP_SSH_support.html">Create a Windows Server with SFTP/SSH support</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="../index.html">Create a Windows Server with SFTP/SSH support</a></h2>
+
+            <p>
+
+ <h2>Core Concepts</h2>
+
+<h3>SFTP</h3>
+
+SSH File Transfer Protocol (also Secret File Transfer Protocol, Secure FTP, or SFTP) is a network protocol that provides file access, file transfer, and file management functionalities over any reliable data stream.
+It is provided as standard on Linux servers but is not supported as part of the standard Windows Server Operating System. Don't confused SFTP servers with Microsoft supplied FTPS, also know as SSL FTP. This is not compatabile with SFTP/SSH.
+To support chef solo and one click testing of chef cookbooks we need a SFTP servers to copy the cookbooks from our client to the servers so they can run.
+
+
+<h3>SSH</h3>
+
+
+Secure Shell (SSH) is a network protocol for secure data communication, remote shell services or command execution and other secure network services between two networked computers.
+It is provided as standard on Linux servers but is not supported as part of the standard Windows Server Operating System.
+To support chef solo and one click testing of chef cookbooks we need a to be able to run windows cmd commands remotely via SSH.
+
+</p>
+
+<br><br>
+
+
+<h2 id="startandconfigureserver">Start and Configure a Windows 2008 Server</h2>
+
+
+1. Create a security group with port 22 and 3389 open.<br><br>
+
+
+2. Start the latest Amazon Windows 2008 Server using the security group. At time of writing ami-eb3b019f amazon/Windows_Server-2003-R2_SP2-English-64Bit-Base-2012.05.10<br><br>
+
+
+3. Logon as Adminstrator via RDP<br><br>
+
+4. Turn off the firewall. (Control Panel -> Firewall)<br>
+
+<img border=0 width=400 height=325 src="../gettingstarted/images/firewall.png"><br><br>
+
+
+5. Change the Administrator Password. (administrative tools -> computer Management).
+   Click on Local Users and Groups. Click on Users. Right Click on Administrator and select Set Password.<br>
+
+   <img border=0 width=600 height=265 src="../gettingstarted/images/change_password.png"><br><br>
+
+6. set the computer name:<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;Go to C:\Program Files\Amazon\EC2ConfigService and double-click the Ec2ConfigServiceSettings application.<br>
+
+   &nbsp;&nbsp;&nbsp;Your Windows instance displays the Ec2 Service Properties dialog box.<br>
+
+   &nbsp;&nbsp;&nbsp;in the general tab make sure set the compute name of the instance to ip....<br>
+
+    <img border=0 width=300 height=325 src="../gettingstarted/images/ec2_config.png"><br><br>
+
+7. stop the server and start the serverto get the ec2 configure changed.<br>
+
+See <a href="http://docs.amazonwebservices.com/AWSEC2/2011-07-15/WindowsGuide/index.html?UsingConfig_WinAMI.html">Using EC2Config Service</a><br><br>
+
+<h2 id="installwinsshdServer">Install WinSSHD Server</h2><br><br>
+
+To work with chef we need an SFTP Server that works on Windows 2008 and support SFT and SSH shell.
+There are alot of old SFTP servers for windows out here but the only free one I was able to make work in Windows 2008 as support SFTP file transfer and SSH remote commands and was <a href="http://www.bitvise.com/winsshd">WinSSHD</a>.<br><br>
+
+
+6. download the the WinSSHD 5 installer from a href="http://www.bitvise.com/winsshd-download">http://www.bitvise.com/winsshd-download</a><br><br>
+
+7. Run the installer taking the defaults and install the free version.<br><br>
+
+8. Go into the winSSHD management console and start the winSSHD server.<br>
+
+<img border=0 width=400 height=525 src="../gettingstarted/images/winsshd.png"><br><br>
+
+9. Test you can access the SFTP server using say WinSCP.<br><br>
+
+10. Create a amazon machine image<br><br>
+
+Documentation on WinSSHD is available at <a href="http://www.bitvise.com/winsshd-doc-printable">http://www.bitvise.com/winsshd-doc-printable</a><br><br>
+
+
+NOTE: if you get error HostKeyMismatch trying to access the windows server via WinSCP
+
+on your PC go to C:\Users\<user>\.ssh and delete the known_hosts file.<br><br>
+
+NOTE: THis setup uses password access to SFTP and SSH. It is also possible instead to setup public key. See the WinSSHD docs for details.
+
+
+ 		<p>
+        </p>
+    </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+				       Next: <a href="../index.html">Documentation</a> &gt; <a href="..//gettingstarted/building_a_base_image.html">Build a Base Image with Chef Solo</a>
+		      </div>
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

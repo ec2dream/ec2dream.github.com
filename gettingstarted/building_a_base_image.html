@@ -35,12 +35,12 @@
 <div id="page">
   <div id="content">
 <div id="breadcrumb">
-       <a href="../index.html">Documentation</a> &gt; <a href="./building_a_base_image.html">Build a Linux Base Image</a>
+       <a href="../index.html">Documentation</a> &gt; <a href="./building_a_base_image.html">Build a Base Image with Chef Solo</a>
       </div>
 
     <div class="post" >
 	  <div class="entry">
-        <h2><a href="../index.html">Build a Linux Base Image</a></h2>
+        <h2><a href="../index.html">Build a Base Image with Chef Solo</a></h2>
 
             <p>
 
@@ -69,8 +69,8 @@ It is somewhat analogous to a snapshot of the boot partition containing the oper
 
 1. The Chef Repository of EC2Dream Locationn is setting in the Settings panel.<br>
 In the Chef Repository edit cookbooks/base/attributes/default.rb and change the atributes AMAZON_PUBLIC_KEY, AMAZON_ACCESS_KEY_ID and EC2_URL to
-the values in your Settings in EC2Dream.<br><br>
-
+the values in your Settings in EC2Dream.
+If you are using a Windows Server also set the WIN_ADMIN_PASSWORD attribute.<br><br>
 2. In the Server panel for the running Base server press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the Base cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
 
 <img border=0 width=600 height=325 src="../gettingstarted/images/image30h.jpg"><br><br>

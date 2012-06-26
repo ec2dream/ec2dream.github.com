@@ -77,7 +77,7 @@ c. Uupload the apache2 cookbook from the Chef Repository.<br><br>
 <h2 id="buildabaseserver">Build a Base Server for Hosted Chef</h2>
 
 1. Edit cookbooks/base_hosted/attributes/default.rb and change the atributes ORGANIZATION to your organization in Hosted Chef.<br>
-   Copy your organisation verification key file to the cookbooks/base_hosted/attributes/default directory<br><br>
+   Copy your organisation verification key file to the cookbooks/base_hosted/files/default directory<br><br>
 
 2. Launch a new base server and when running specify in the Server panel a Chef Node of 'base_hosted' then press the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the base_hosted cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
 
@@ -97,8 +97,8 @@ c. Uupload the apache2 cookbook from the Chef Repository.<br><br>
 <h2 id="runthe application">Run the application</h2>
 
 1. Create or update the launch profile for App with an Image id for the Base_hosted Image created earlier and specify in the user data:<br>
-&nbsp;&nbsp;&nbsp;chef_run_list=recipe[apache2]<br><br>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chef_run_list=recipe[apache2]<br>
+NOTE: For Windows Servers use iis instead of apache2<br><br>
 2. Launch the server and the apache2 application will install at startup<br><br>
 
 3. The apache is running by going to a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
