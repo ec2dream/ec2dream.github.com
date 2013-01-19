@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 
-<title>EC2Dream Documentation</title>
+<title>Fogviz Documentation</title>
 
 <link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../print.css" type="text/css" media="print" />
@@ -16,7 +16,7 @@
   <div id="header">
     <div id="headerimg">
 	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
-	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+	  <div class="description">Visual Cloud Computing Admin,  Consulting, Information, Tutorials, Best Practices
 </div>
 	</div>
 	<div id="navi">
@@ -40,23 +40,20 @@
 
     <div class="post" >
 	  <div class="entry">
-        <h2><a href="../index.html">Setup an Amazon AWS Account</a></h2>
+        <h2><a href="../index.html">Setup Amazon AWS Account</a></h2>
 
             <p>
-		    <br><br>
-To use Amazon EC2, you must sign up for an Amazon Web Services (AWS) Account<br><br>
-For information on obtaining an AWS Account, go to the Amazon AWS Home Page (<a href="http://aws.amazon.com">http://aws.amazon.com</a>) and press the "Signup Now" button.<br><br>
+To use Amazon you must sign up for an Amazon Web Services (AWS) Account.
+For information on obtaining an AWS Account, go to the Amazon AWS Home Page (<a href="http://aws.amazon.com">http://aws.amazon.com</a>) and press the Signup button.<br><br>
 
 </p></p><p>
 
-        <h2><a href="../index.html">Setup a Eucalyptus Account</a></h2>
+        <h2><a href="../index.html">Setup Eucalyptus Account</a></h2>
 
             <p>
-Eucalyptus is an acronym for Elastic Computing Architecture for Linking Your Programs to Useful Systems.  Eucalyptus is an open source implementation of an Infrastructure as a Service (IaaS).  It is a web services based implementation of a cloud computing infrastructure.
+Eucalyptus is an open source implementation of an Infrastructure as a Service (IaaS).  It is a web services based implementation of a cloud computing infrastructure.
 
-</p><p>Those familiar with Amazon's EC2 system will find most of these instructions familiar because Eucalyptus is compatiable with the Eucalyptus API and therefore fully functions
-
-with the EC2Dream System Admin.
+Those familiar with Amazon's EC2 system will find most of these instructions familiar because Eucalyptus is compatiable with the Amazon AWS API.
 
 
 
@@ -66,15 +63,14 @@ with the EC2Dream System Admin.
 
 
 <p>
-If you are using the Eucalyptus Community Cloud <a href="http://open.eucalyptus.com/CommunityCloud">signup</a>, and then use <a href="https://ecc.eucalyptus.com:8443/#login">https://ecc.eucalyptus.com:8443/#login</a> to apply for an account.
+If you are using the <a href="https://communitycloud.eucalyptus.com/">Eucalyptus Community Cloud</a> select signup to apply for an account.
 </p>
 <p>
-<strong>Load</strong> in your browser the Web page of the Eucalyptus
-cloud installation that you would like to use. Ask your system
-administrator for the URL if you don't know it. (The URL will be of the
+<b>Load</b> in your browser the Web page of the Eucalyptus
+cloud installation (The URL will be of the
 form <i><a class="ext-link" href="https://your.cloud.server:8443/"><span class="icon">https://your.cloud.server:8443/</span></a></i>, where <i>your.cloud.server</i> is likely to be the front-end of the cluster.)
 </p>
-<img src="images/login.png" alt="login.png" class="euca-screenshot" title="login.png">
+<img width=600 height=300 src="images/login.png" alt="login.png" class="euca-screenshot" title="login.png">
 <p>
 <strong>Click</strong> the "Apply" link and fill out the form presented
 to you. You may not be able to use the system until the (human)
@@ -91,9 +87,7 @@ the administrator to make the decision.
 <p>
 Once you have logged in, you will see the 'Generate Certificate' button
 under the 'Credentials' tab. Generating a certificate for your account is
-necessary before you can use EC2Dream Graphical System Admin for
-querying and controlling Eucalyptus instances. Currently, the Web interface
-to Eucalyptus is limited and, hence, the use EC2Dream Graphical System Admin is very useful.
+necessary before you can use Fogviz.
 </p>
 <p>
 <img src="images//credentials1.png" alt="credentials1.4.png" class="euca-screenshot" title="credentials1.4.png">
@@ -116,7 +110,7 @@ chmod 0600 ~/.euca/*
 </pre>
 </p></p><p>
 
-        <h2><a href="../index.html">Setup an OpenStack Account</a></h2>
+        <h2><a href="../index.html">Setup OpenStack Account</a></h2>
 
 <p>
 If you are using the TryStack Cloud follow the  <a href="http://trystack.org">signup</a> instructions to apply for an account. At time of writing you need to join the facebook group to get your invite.<br><br>
@@ -125,6 +119,39 @@ When you get the (Somebody) approved your request to join the group TryStack not
 Click on the API Option and note the user, password and url which will be used to setup an environment.<br><br>
 <img border=0 width=600 height=225 src="../gettingstarted/images/trystack_login.png"><br><br>
 </p>
+
+
+ 		<p>
+        </p>
+    </p>
+
+        <h2><a href="../index.html">Setup HP Cloud Account</a></h2>
+
+<p>
+If you are using the HP Cloud go to <a href="http://www.hpcloud.com/">http://www.hpcloud.com/</a> and press the setup free account button and enter your details:<br><br>
+<img border=0 width=300 height=225 src="../gettingstarted/images/hpcloud.png"><br><br>
+Get your login details from the email that will be sent to your address and go to the <a href="https://console.hpcloud.com/login">Console</a> and login.<br><br>
+<img border=0 width=225 height=175 src="../gettingstarted/images/hp_console.png"><br><br>
+
+Click on API Keys and note the Access Key, Secret Key and Tenant Id which will be used to setup an environment.<br><br>
+<img border=0 width=600 height=325 src="../gettingstarted/images/hp_api_keys.png"><br><br>
+
+ 		<p>
+        </p>
+    </p>
+
+        <h2><a href="../index.html">Setup Rackspace Account</a></h2>
+
+<p>
+If you are using the Rackspace Cloud go to <a href="http://www.rackspace.com/cloud/">http://www.rackspace.com/cloud/</a> and press the signup button and enter your details to create a cloud account: (For Non-US customers switch to the Rackspace Website for your country) <br><br>
+<img border=0 width=600 height=325 src="../gettingstarted/images/rackspace.png"><br><br>
+Get your login details from the email that will be sent to your address and go to the <a href="http://www./rackspace.com/">http://www.rackspace.com</a> and login to the Cloud Control Panel.<br><br>
+<img border=0 width=400 height=225 src="../gettingstarted/images/rackspace_control.png"><br><br>
+
+Select API Keys<br><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/rackspace_select_keys.png"><br><br>
+Note the Username, API Key and Account Number which will be used to setup an environment.<br><br>
+<img border=0 width=600 height=300 src="../gettingstarted/images/rackspace_api_keys.png"><br><br>
 
 
  		<p>

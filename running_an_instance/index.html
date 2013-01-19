@@ -16,7 +16,7 @@
   <div id="header">
     <div id="headerimg">
 	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
-	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+	  <div class="description">Visual Cloud Computing Admin,  Consulting, Information, Tutorials, Best Practices
 </div>
 	</div>
 	<div id="navi">
@@ -47,13 +47,12 @@
 
 
 
-Every launched instance requires that you have a security group defined to specify what network traffic is allowed to reach the instance. By default Amazon EC2 does not enable any traffic.
-
+Every launched instance requires that you have a security group defined to specify what network traffic is allowed to reach the instance. By default no traffic is enabled.
+<br>
 We will create a new group called App. You might like to call the group another name that identifies your application.<br>
+<h3>Rackspace</h3> Skip this step as Rackspace currently does not support security groups.<br><br>
 
-
-
-1. In EC2Dream System Admin Click on Security Groups in the left hand tree to go into the SecGrp panel then click on the New button <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> <br>
+1. In the tree view click on Security Groups in the left hand tree to go into the SecGrp panel then click on the New button <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> <br>
 2. Create a Security Group called Base and check the windows server option if creating a windows server.<br><br>
 
 
@@ -83,15 +82,17 @@ We will create a new group called App. You might like to call the group another 
 
 <h2 id="launchinganinstance">Launching an Instance</h2>
 
-1. In the EC2Dream System Admin click on the Base under Servers and the launch profile tab will open.<br><br>
+1. In the tree view click on the Base under Servers and the launch profile tab will open.<br>
+<h3>Rackspace</h3> Use the default simulated security group.<br><br>
 
 <img border=0 width=600 height=375 src="./images/image23c.jpg"><br><br>
 
 2. Select the Image ID by clicking on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/magnifier.png">.<br>
+<h3>Amazon</h3> The the following images are recommended.<br>
 &nbsp;&nbsp;For <b>Ubuntu</b> view the alestic images on <a href="http://alestic.com/">http://alestic.com</a> and select the latest ubuntu base image for your EC2 region.<br>
 &nbsp;&nbsp;For <b>CentOS</b> view the Public images with right in the description and select the latest rightscale image e.g. 944964708905/rightimage_centos_6.2_i386_20120618<br>
-&nbsp;&nbsp;For <b>Windows</b> view the Amazon images with windows in the description and select the latest Windows 2008 Server image e.g. amazon/Windows_Server-2003-R2_SP2-English-64Bit-Base-2012.05.10<br><br>
-
+&nbsp;&nbsp;For <b>Windows</b> view the Amazon images with windows in the description and select the latest Windows 2008 Server image e.g. amazon/Windows_Server-2003-R2_SP2-English-64Bit-Base-2012.05.10<br>
+<h3>Other clouds</h3> Use the default linux or windows images.<br><br>
 <img border=0 width=500 height=325 src="images/image23b.jpg"><br><br>
 
 3. Select a keypair by clicking on the icon <img border=0 width=20 height=20 src="../gettingstarted/icons/magnifier.png">.<br><br>
@@ -124,11 +125,13 @@ Click on the WinSCP icom <img border=0 width=20 height=20 src="../gettingstarted
 <img border=0 width=600 height=325 src="./images/image28b.jpg"><br><br>
 
 <h2 id="connectingtotheinstance">Connecting to the Windows 2008 Server Instance</h2>
-If using windows server in the server panel click on the key icon <img border=0 width=20 height=20 src="../gettingstarted/icons/key.png"> next to the Win Admin Password field to fetch the unencrpyted password.<br><br>
+<h3>Amazon</h3>If using windows server in the server panel click on the key icon <img border=0 width=20 height=20 src="../gettingstarted/icons/key.png"> next to the Win Admin Password field to fetch the unencrpyted password.<br><br>
 
 <img border=0 width=600 height=325 src="../gettingstarted/images/imagew28a.jpg"><br><br>
 
-Click on the Remote Desktop icon <img border=0 width=20 height=20 src="../gettingstarted/icons/desktop_empty.png"> and a Remote Desktop session will open. To switch away from Full Screen mode press CNTRL-ALT-BREAK.<br><br>
+<h3>All Clouds</h3>
+Click on the Remote Desktop icon <img border=0 width=20 height=20 src="../gettingstarted/icons/desktop_empty.png"> and a Remote Desktop session will open. To switch away from Full Screen mode press CNTRL-ALT-BREAK.<br>
+<b>NOTE:</b> The Win Admin Password field contains the password<br><br>
 
 <img border=0 width=600 height=325 src="../gettingstarted/images/imagew28b.jpg"><br><br>
 

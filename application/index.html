@@ -16,7 +16,7 @@
   <div id="header">
     <div id="headerimg">
 	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
-	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+	  <div class="description">Visual Cloud Computing Admin,  Consulting, Information, Tutorials, Best Practices
 </div>
 	</div>
 	<div id="navi">
@@ -47,16 +47,16 @@
  <h2>Core Concepts</h2>
 
 
-<h3>Elastic IP</h3>
+<h3>Fixed IP</h3>
 
-  Elastic IP addresses are static IP addresses designed for
-dynamic cloud computing. Elastic IP addresses are associated with your account,
-not specific instances. Any elastic IP addresses that you associate with your
-account remain associated with your account until you explicitly release them.
-Unlike traditional static IP addresses, however, elastic IP addresses allow you
+  Fixed IP addresses, called in Amazon Elastic IP addresses,  are designed for
+dynamic cloud computing. Fixed IP addresses are associated with your account,
+not specific instances. Any fixed IP addresses that you associate with your
+account remain associated with your account until you explicitly release them.<br>
+Unlike traditional static IP addresses, however, fixed IP addresses in Cloud Computing allow you
 to mask instance or availability zone failures by rapidly remapping your public
 IP addresses to any instance in your account. You can only associate one
-elastic IP address with one instance at a time.
+fixed IP address with one instance at a time.
 
 
 
@@ -65,25 +65,25 @@ elastic IP address with one instance at a time.
 
 <br><br>
 
-<h2 id="createanewamazonebsvolume">Optionally Create a separate Amazon EBS Volume</h2>
+<h2 id="createanewamazonebsvolume">Optionally Create a separate Volume</h2>
 
-To create a new Amazon EBS Volume, perform the following steps:<br><br>
+To create a new Volume, called in Amazon Elastic Block Storage (EBS), perform the following steps:<br><br>
 
-1. Click on the "EBS Volumes" in the tree of EC2Dream System Admin.<br><br>
+1. Click on the "Volumes" in the tree view.<br><br>
 
 <img border=0 width=600 height=225 src="../gettingstarted/images/image23.jpg"><br><br>
 
-2. Create an EBS by clicking on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"><br><br>
+2. Create a Volume by clicking on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"><br><br>
 
 <img border=0 width=600 height=225 src="../gettingstarted/images/image23a.jpg"><br><br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;-Give the EBS a nickname i.e. App.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-Give the volume a nickname i.e. App.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-Type in the size in gigabytes (GB) of the volume you would like between 1 and 1000.
 I would recommend 10GB.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-Specify the availability zone and "no snapshot".<br>
 <b>NOTE:</b> A volume must be in the same availability zone as an instance. You can optionally specify an Availability Zone if desired or the snapshot id to create a
 volume from. <br><br>
-3. Click the "Create" button, and your Amazon EBS volume will be created.<br>
+3. Click the "Create" button, and your volume will be created.<br>
 
 <b>NOTE:</b> If you accidentally create a volume in the wrong zone, you can
 either create a new blank volume in the proper zone, or create a new volume
@@ -91,12 +91,13 @@ based on a snapshot of a volume in another zone.<br><br>
 4. If a server instance is already running it can be attached dynamically to the instance by pressing the attach button <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png">.
 Then mounted and initialised on the server.<br><br>
 5. It can also be attached, mounted and initialised by the cloud_init.rb script at startup by specifying parameters in the userdata<br><br>
-<h2 id="creatinganeweip">Optionally creating a new Elastic IP</h2>
+
+<h2 id="creatinganeweip">Optionally creating a new Fixed IP</h2>
 Some applications like (for example Magento) have the IP Address or URL is configured in the application so need a fixed IP Address.<br>
 
-Also for production an Elastic IP is typically configured for outwardly facing parts.<br>
+Also for production a Fixed IP is typically configured for outwardly facing parts.<br>
 
- 1. Click on "Elastic IPs" in the tree of EC2Dream System Admin and then click on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> and a new Elastic IP address will be allocated.<br><br>
+ 1. Click on "IP Addresses" in the tree view and then click on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> and a new IP address will be allocated.<br><br>
 
  <img border=0 width=600 height=225 src="../gettingstarted/images/image50.jpg"><br><br>
 
@@ -111,12 +112,13 @@ Also for production an Elastic IP is typically configured for outwardly facing p
 
 <br>
 1. Create a Security Group for the server called App.<br><br>
+<h3>Rackspace</h3> Skip creating a security as Rackspace currently does not support security groups. use tyhe default group in EC2Dream.<br><br>
 
 2. Create a launch profile for App with an Image id for the Base Image created earlier.<br>
 
    <img border=0 width=600 height=425 src="../gettingstarted/images/image51b.jpg"><br><br>
 
-   If you are using a separate EBS specify in the user data:<br>
+   If you are using a separate volume specify in the user data:<br>
 &nbsp;&nbsp;&nbsp;vol=vol-xxxxxx&device=/dev/sdf&dir=/mnt/data&init_ebs=y<br><br>
    If you are using an elastic ip specify in the user data:<br>
 &nbsp;&nbsp;&nbsp;elastic_ip=999.999.999.999<br><br>

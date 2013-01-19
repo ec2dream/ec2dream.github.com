@@ -16,7 +16,7 @@
   <div id="header">
     <div id="headerimg">
 	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
-	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+	  <div class="description">Visual Cloud Computing Admin,  Consulting, Information, Tutorials, Best Practices
 </div>
 	</div>
 	<div id="navi">
@@ -53,12 +53,13 @@ Cookbooks contain Attributes, Definitions, File Distribution, Libraries, Recipes
 
 
 
-<h3>Amazon Machine Image (AMI)</h3>
+<h3>Machine Image</h3>
+A Machine Image contains all the information necessary to boot instances of your software.
+It is somewhat analogous to a snapshot of the boot partition containing the operating system and installed software running on your server.<br>
 
-
-For EBS based instances an An Amazon Machine Image (AMI) is an EBS snapshot. For Instance instances and AMI is an encrypted file stored in Amazon S3. It contains all the information necessary to boot instances of your software.
-It is somewhat analogous to a snapshot of the boot partition containing the operating system and installed software running on your server.
-
+Amazon has two types of images:<br>
+a. Elastic Block Storage (EBS) based instances store Amazon Machine Images (AMI) as a EBS snapshot.<br>
+b. Instance instances store AMI as an encrypted file stored in Amazon S3.<br>
 
 </p>
 
@@ -67,19 +68,20 @@ It is somewhat analogous to a snapshot of the boot partition containing the oper
 
 <h2 id="buildabaseserver">Build a Base Server</h2>
 
-1. The Chef Repository of EC2Dream Locationn is setting in the Settings panel.<br>
+1. The Chef Repository of Fogviz Location is a setting in the Settings panel.<br>
 In the Chef Repository edit cookbooks/base/attributes/default.rb and change the atributes AMAZON_PUBLIC_KEY, AMAZON_ACCESS_KEY_ID and EC2_URL to
-the values in your Settings in EC2Dream.
+the values in your Settings in Fogviz.
 If you are using a Windows Server also set the WIN_ADMIN_PASSWORD attribute.<br><br>
 2. In the Server panel for the running Base server press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the Base cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
 
 <img border=0 width=600 height=325 src="../gettingstarted/images/image30h.jpg"><br><br>
 
 3. Create a Base Image<br>
-   a. For EBS Images create an Image by pressing on the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png"> in the server tab.<br>
+  Create an Image by pressing on the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png"> in the server tab.<br>
  <img border=0 width=600 height=325 src="../gettingstarted/images/image30d.jpg"><br><br>
 
-   b. For Instance Store Images:<br><br>
+<h3>Amazon Instance Store Images</h3>
+
 &nbsp;&nbsp;&nbsp;&nbsp;   -Configure an run the bundle.rb script on the server<br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;   -Register the image by pressing the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png">in the server tab.<br><br>

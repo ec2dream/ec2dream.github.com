@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
+	  <div class="description">Visual Cloud Computing Admin,  Consulting, Information, Tutorials, Best Practices
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./using_cloud_foundry.html">Cloud Foundry</a>
+      </div>
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="../index.html">Cloud Foundry</a></h2>
+
+<p> <a href="http://en.wikipedia.org/wiki/Cloud_Foundry">Cloud Foundry</a> is an open source cloud computing platform as a service (PaaS) software developed by VMware released under the terms of the Apache License 2.0.
+It is primarily written in Ruby. The source and development community for this software is available at <a href="http://www.cloudfoundry.org">cloudfoundry.org</a>.
+VMWare run a hosted version at <a href="http://www.cloudfoundry.com">cloudfoundry.com</a> and there are several other hosted suppliers.<br><br>
+<h2>Core Concepts</h2>
+
+<h3>App</h3>
+
+This is the basic unit of Cloud Foundry and can be considered as a container to run your application code.
+<h3>Service</h3>
+
+Services such as Databases, Message systems are used by Apps. Cloud Foundry comes with a number of default services and it is possible to register
+additional services with Cloud Foundry.
+<br><br><br><br>
+
+
+<h2><a href="../index.html">Setup Cloud Foundry Account</a></h2>
+
+<p>
+If you are using VMWare Cloud Foundry go to <a href="http://www.cloudfoundry.com/">http://www.cloudfoundry.com/</a> and press the Signup for Cloud Foundry button and enter your details:<br><br>
+<img border=0 width=600 height=325 src="../gettingstarted/images/cloudfoundry.png"><br><br>
+You will receive your login details in an email that will be used to setup your environment.<br><br>
+<br><br>
+<h2 id="creatingaenvironment">Create an Environment</h2>
+
+Run Fogviz by running fogviz in a command prompt (If it is installed as ec2dream run ec2dream).<br><br>
+
+1. The very first time Fogviz is run it prompts for the location of the repository. Take the default local repository.<br><br>
+
+<img border=0 width=600 height=275 src="../gettingstarted/images/image02.jpg"><br><br>
+
+Then an initial screen is displayed:<br><br>
+
+<img border=0 width=600 height=275 src="../gettingstarted/images/image12.jpg"><br><br>
+
+2. Click on the icon <img border=0 width=25 height=25 src="../gettingstarted/icons/status_online.png">, Select "Create New Environmnent" and press OK.<br><br>
+<img border=0 width=300 height=200 src="../gettingstarted/images/image14.jpg"><br><br>
+
+3. Select the Cloud Foundry tab and enter an environment name, your Cloud Foundry user and password, and change the URL if your environment is not api.cloudfoundry.com.<br><br>
+
+<img border=0 width=400 height=175 src="../gettingstarted/images/imagec2.jpg"><br><br>
+
+ <h2><a href="../index.html">Create an App</a></h2>
+1. Click on App in the tree to create a blank Launch Profile<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec4.jpg"><br><br>
+2. Enter:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;App Name: test<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec5.jpg"><br><br>
+
+and press Save Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/disk.png"><br><br>
+
+3. Press Launch Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/rocket.png"> to Create the App.<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec6.jpg"><br><br>
+
+4. Hit the refresh  Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/arrow_redo.png"> and you will see the App in STOPPED status<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec7.jpg"><br><br>
+
+ <h2><a href="../index.html">Upload an Application and Start App</a></h2>
+1. Get a sample war file<br>
+
+&nbsp;&nbsp;Download a sample WAR from <a href="http://content.hccfl.edu/pollock/ajava/war/myServletWAR.war">http://content.hccfl.edu/pollock/ajava/war/myServletWAR.war</a><br>
+&nbsp;&nbsp;For details See <a href="http://content.hccfl.edu/pollock/ajava/war/myservletwar.htm">http://content.hccfl.edu/pollock/ajava/war/myservletwar.htm</a><br><br>
+
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec3.jpg"><br><br>
+
+
+
+
+
+
+
+
+
+2. Upload to App<br>
+ Click on the App in the tree and in the Server tab press the Upload Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/arrow_up.png">. Select the war file.<br><br>
+
+
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec8.jpg"><br><br>
+ and press Upload button.<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec9.jpg"><br><br>
+3. Start the App.
+ In the Server tab press the Start Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/arrow_right.png"><br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec10.jpg"><br><br>
+ Hit the refresh  Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/arrow_redo.png"> and you will see the App go to STARTED status<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec11.jpg"><br><br>
+4. Test App. In a browswer go to <a href="http://xxxxxx.cloudfoundry.com">http://xxxxxx.cloudfoundry.com</a><br><br>
+<img border=0 width=900 height=275 src="../gettingstarted/images/imagec12.jpg"><br><br>
+
+ <h2><a href="../index.html">Create a Service and Bind to App</a></h2>
+1. Select Services from the tree.<br><br>
+<img border=0 width=600 height=200 src="../gettingstarted/images/imagec13.jpg"><br><br>
+2. Press the New Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/new.png"> and Select a System Service.<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec14.jpg"><br><br>
+3. Specify a Service Name and press Create Button.<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec15.jpg"><br><br>
+<img border=0 width=600 height=200 src="../gettingstarted/images/imagec16.jpg"><br><br>
+4. Click on the App in the tree and press the New Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/new.png"> next to Services and select a system service.<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec17.jpg"><br><br>
+5. Press the Bind Button to bind service to App.<br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec18.jpg"><br><br>
+<img border=0 width=600 height=275 src="../gettingstarted/images/imagec20.jpg"><br><br>
+6. You can also specify a service in the Launch of an App.<br><br>
+<img border=0 width=600 height=200 src="../gettingstarted/images/imagec21.jpg"><br><br>
+<img border=0 width=600 height=235 src="../gettingstarted/images/imagec22.jpg"><br><br>
+<h2><a href="../index.html">Update instances in an App</a></h2>
+Instances can be updated by changing the Instances value and pressing Update Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/accept.png"><br><br>
+<img border=0 width=600 height=200 src="../gettingstarted/images/imagec23.jpg"><br><br>
+<h2><a href="../index.html">Delete an App</a></h2>
+Stop the App by pressing the Stop Icon <img border=0 width=25 height=25 src="../gettingstarted/icons/cancel.png">and delete the app by pressing the Terminate icon <img border=0 width=25 height=25 src="../gettingstarted/icons/disconnect.png"><br><br>
+<img border=0 width=600 height=200 src="../gettingstarted/images/imagec24.jpg"><br><br>
+<h2><a href="../index.html">Delete a Service</a></h2>
+Services can be terminate by pressing the Delete Icon in the Service View <img border=0 width=25 height=25 src="../gettingstarted/icons/kill.png"><br><br>
+<img border=0 width=600 height=200 src="../gettingstarted/images/imagec25.jpg"><br><br>
+	<p>
+        </p>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+				       Return to: <a href="../index.html">Documentation</a>
+      </div>
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

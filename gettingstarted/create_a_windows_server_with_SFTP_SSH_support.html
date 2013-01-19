@@ -16,7 +16,7 @@
   <div id="header">
     <div id="headerimg">
 	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
-	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+	  <div class="description">Visual Cloud Computing Admin,  Consulting, Information, Tutorials, Best Practices
 </div>
 	</div>
 	<div id="navi">
@@ -42,7 +42,7 @@
 	  <div class="entry">
         <h2><a href="../index.html">Create a Windows Server with SFTP/SSH support</a></h2>
 
-            <p>
+            <p>To support chef solo and one click testing of chef cookbooks on Windows Server we need to be able to run windows cmd commands remotely via SSH and copy cookbooks from our client to the servers via SFTP.
 
  <h2>Core Concepts</h2>
 
@@ -50,7 +50,7 @@
 
 SSH File Transfer Protocol (also Secret File Transfer Protocol, Secure FTP, or SFTP) is a network protocol that provides file access, file transfer, and file management functionalities over any reliable data stream.
 It is provided as standard on Linux servers but is not supported as part of the standard Windows Server Operating System. Don't confused SFTP servers with Microsoft supplied FTPS, also know as SSL FTP. This is not compatabile with SFTP/SSH.
-To support chef solo and one click testing of chef cookbooks we need a SFTP servers to copy the cookbooks from our client to the servers so they can run.
+
 
 
 <h3>SSH</h3>
@@ -58,7 +58,7 @@ To support chef solo and one click testing of chef cookbooks we need a SFTP serv
 
 Secure Shell (SSH) is a network protocol for secure data communication, remote shell services or command execution and other secure network services between two networked computers.
 It is provided as standard on Linux servers but is not supported as part of the standard Windows Server Operating System.
-To support chef solo and one click testing of chef cookbooks we need a to be able to run windows cmd commands remotely via SSH.
+
 
 </p>
 
@@ -102,7 +102,7 @@ See <a href="http://docs.amazonwebservices.com/AWSEC2/2011-07-15/WindowsGuide/in
 <h2 id="installwinsshdServer">Install WinSSHD Server</h2><br><br>
 
 To work with chef we need an SFTP Server that works on Windows 2008 and supports SFTP and SSH shell.
-There are alot of old SFTP servers for windows out here but the only free one I was able to make work in Windows 2008 to support both SFTP file transfer and SSH remote commands was <a href="http://www.bitvise.com/winsshd">WinSSHD</a>.<br><br>
+There are alot of old SFTP servers for windows out there but the only free one I was able to make work in Windows 2008 to support both SFTP file transfer and SSH remote commands was <a href="http://www.bitvise.com/winsshd">WinSSHD</a>.<br><br>
 
 1. Download the the WinSSHD 5 installer from a href="http://www.bitvise.com/winsshd-download">http://www.bitvise.com/winsshd-download</a><br><br>
 
@@ -114,16 +114,16 @@ There are alot of old SFTP servers for windows out here but the only free one I 
 
 4. Test you can access the SFTP server using say WinSCP.<br><br>
 
-5. Create a amazon machine image.<br><br>
+5. Create an Image of the server.<br><br>
 
 Documentation on WinSSHD is available at <a href="http://www.bitvise.com/winsshd-doc-printable">http://www.bitvise.com/winsshd-doc-printable</a><br><br>
 
 
-NOTE: if you get error HostKeyMismatch trying to access the windows server via WinSCP
+<b>NOTE:</b> if you get error HostKeyMismatch trying to access the windows server via WinSCP
 
 on your PC go to C:\Users\<user>\.ssh and delete the known_hosts file.<br><br>
 
-NOTE: This setup uses password access to SFTP and SSH. It is also possible instead to setup public key. See the WinSSHD docs for details.
+<b>NOTE:</b> This setup uses password access to SFTP and SSH. It is also possible instead to setup public key. See the WinSSHD docs for details.
 
 
  		<p>

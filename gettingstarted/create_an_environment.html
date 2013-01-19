@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 
-<title>EC2Dream Documentation</title>
+<title>Fogviz Documentation</title>
 
 <link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../print.css" type="text/css" media="print" />
@@ -16,7 +16,7 @@
   <div id="header">
     <div id="headerimg">
 	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
-	  <div class="description">Open Source Graphical System Admin Software, Methods, Consulting, Information, Tutorials
+	  <div class="description">Visual Cloud Computing Admin,  Consulting, Information, Tutorials, Best Practices
 </div>
 	</div>
 	<div id="navi">
@@ -36,77 +36,92 @@
   <div id="content">
 
 <div id="breadcrumb">
-       <a href="../index.html">Documentation</a> &gt; <a href="./create_an_environment.html">Create an EC2Dream Environment</a>
+       <a href="../index.html">Documentation</a> &gt; <a href="./create_an_environment.html">Create an Environment</a>
       </div>
     <div class="post" >
 	  <div class="entry">
-        <h2><a href="../index.html">Create an EC2Dream Environment</a></h2>
+        <h2><a href="../index.html">Create an Environment</a></h2>
 
 <p>
 <h2>Core Concepts</h2>
 
 <h3>Environment</h3>
 
-This is the basic unit of administration in the EC2Dream System Admin. It identifies a group of servers and configuration identified
-by access keys, region and keypair. They are stored in a repository that is either local on your machine or another location that could be shared.
+This is the basic unit of administration in the Fogviz. It identifies a particular cloud by access keys and URL or region. They are stored in a repository that is either local on your machine or another location that could be shared.
 
-<h3>Access Key and Secret Access Key</h3>
+<h3>Cloud Access Key and Secret Access Key</h3>
 
-The Access Key and Secret Access Key identify yourself when making requests to Amazon Web Services API. EC2Dream System Admin internally
-communicates with Amazon Web Services API to perform system admin tasks. You should never give out these keys to anyone.
+The Access Key and Secret Access Key identify yourself when making requests to Cloud API. Fogviz internally
+communicates with the Cloud API using the fog cloud services library to perform system admin tasks. You should never give out these keys to anyone.
 
 
-<h3>Public and Private Key</h3>
+<h3>Amazon Public and Private Key</h3>
 
-Amazon also provides an X.509 Certificate consisting of a Public Key and Private Key to access Amazon Web Services API. Typically these
-are used on your server to access Amazon Web Services API. You can also supply your own X.509 certificates.
+Amazon also provides a second pair or credentials an X.509 Certificate consisting of a Public Key and Private Key. Typically these
+are used by Amazon EC2 command tools but not by  fog or fogviz. See <a href="http://alestic.com/2009/11/ec2-credentials">http://alestic.com/2009/11/ec2-credentials</a> for an
+explaination of credentials.
 
 <h3>Keypair</h3>
 
-This is a key to connect to your server running in Amazon EC2 via SSH. This is not to be confused with the X.509 Public and Private
-keys used to access the Amazon web Services API.
+This is a key to connect to your server running in some Clouds via SSH instead of the more insecure user and password. This is not to be confused with Amazon's X.509 Public and Private
+keys.
 
 <br><br>
 
 <h2 id="creatingaenvironment">Creating an Environment</h2>
 
-Run EC2Dream System Admin by executing the run.bat or run.sh.<br><br>
+1. Run fogviz in a command prompt (or if you installed it as ec2dream run ec2dream).<br><br>
 
-1. The very first time EC2Dream is run it prompts for the location of the repository. Take the default local repository.<br><br>
+<img border=0 width=600 height=145 src="../gettingstarted/images/image01.jpg"><br><br>
+
+The very first time Fogviz is run it prompts for the location of the repository. Take the default local repository.<br><br>
 
 <img border=0 width=600 height=275 src="../gettingstarted/images/image02.jpg"><br><br>
 
 Then an initial screen is displayed:<br><br>
 
-<img border=0 width=600 height=275 src="../gettingstarted/images/image12.jpg"><br><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/image12.jpg"><br><br>
 
 2. Click on the icon <img border=0 width=25 height=25 src="../gettingstarted/icons/status_online.png">, Select "Create New Environmnent" and press OK.<br><br>
 <img border=0 width=300 height=200 src="../gettingstarted/images/image14.jpg"><br><br>
 
-3. For Amazon enter a name for the environment, the access keys, and change the Region if your environment is
-in Europe. <br><br>
+3. Select the tab of your cloud provider and enter an environment name.<br><br>
+<h3>Amazon</h3> Enter the access keys, and change the Region if your environment is not the default US.<br><br>
 
-<img border=0 width=400 height=175 src="../gettingstarted/images/image15.jpg"><br><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/image15.jpg"><br><br>
 
 <b>NOTE:</b> The access keys are available from <a href="http://aws.amazon.com">http://aws.amazon.com</a> under Your Account, Access Identifiers<br><br>
 
 <img border=0 width=400 height=275 src="../gettingstarted/images/image11c.jpg"><br><br>
 
-4. For Eucalyptus select the Ecalyptus tab, enter a name for the environment, and enter the downloaded eucalyptus certificate zip file.<br><br>
+<h3>Eucalyptus</h3> Enter the downloaded eucalyptus certificate zip file.<br><br>
 
-<img border=0 width=400 height=225 src="../gettingstarted/images/imagee2.jpg"><br><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/imagee2.jpg"><br><br>
 
-<b>NOTE:</b> The access keys are available from the 'Credentials' tab under you Eucalyptus account by pressing Show keys.<br><br>
+<b>NOTE:</b> The  certificate zip file is available from the 'Credentials' tab under you Eucalyptus account by pressing Show keys.<br><br>
 
 <img border=0 width=600 height=375 src="../gettingstarted/images/imagee1.jpg"><br><br>
 
-5. For OpenStack select the OpenStack tab, enter a name for the environment, the user and password , and the url. For trystack the url should be https://nova-api.trystack.org:5443.
+<h3>OpenStack</h3> Enter the user and password , and the url. For trystack the url should be https://nova-api.trystack.org:5443.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/trystack_env.jpg"><br><br>
 The credentials are under the API Option in the OpenStack console.<br><br>
 <img border=0 width=600 height=225 src="../gettingstarted/images/trystack_login.png"><br><br>
 
+<h3>HP Cloud</h3> Enter the user and password , and the url. For HP Cloud the url.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/hp_env.jpg"><br><br>
+The credentials are under the API Option in the OpenStack console.<br><br>
+<img border=0 width=600 height=325 src="../gettingstarted/images/hp_api_keys.png"><br><br>
+
+<h3>Rackspace</h3> Enter the user and password , and the endpoint.<br><br>
+<img border=0 width=600 height=225 src="../gettingstarted/images/rackspace_env.jpg">insert image <br><br>
+The credentials are under the API Option in the Rackspace Cloud Control Panel.<br><br>
+<img border=0 width=600 height=300 src="../gettingstarted/images/rackspace_api_keys.png"><br><br>
+
 <br>
 
-6. Press OK and the environment will be created. If you already have servers running or security groups defined you will see them in the tree view.<br><br>
+4. Press OK and the environment will be created. If you already have servers running or security groups defined you will see them in the tree view.<br><br>
 
 
 <img border=0 width=600 height=275 src="../gettingstarted/images/image16.jpg"><br><br>
@@ -115,9 +130,10 @@ The credentials are under the API Option in the OpenStack console.<br><br>
 
 <h2 id="creatingakeypair">Creating a KeyPair</h2>
 
-An SSH keypair is used for several purposes including connecting to Linux/OpenSolaris instances and retrieving your Windows Administrator password.<br> To generate a keypair, simply perform the following steps: <br><br>
+<h3>Rackspace</h3> Ignore this as it currently doers not support SSH keys.<br><br>
+An SSH keypair is used for several purposes including connecting to Linux instances.<br> To generate a keypair, simply perform the following steps: <br><br>
 
-1. Click on the "KeyPairs" in the tree of EC2Dream System Admin.<br>
+1. Click on the "KeyPairs" in the tree view.<br>
 
 
 2. Create a keypair by clicking on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"><br><br>
@@ -135,13 +151,13 @@ NOTE: For linux/Mac OSX clients remove permissions for all and group access<br><
 
 5. Make a backup copy of the file and store in a secure place as it cannot be repeatedly downloaded.<br><br>
 
-6. In the EC2Dream System Admin click on Settings in the tree view and in the Settings tab set the EC2_SSH_PRIVATE_KEY to the file created and then
+6. In the Fogviz click on Settings in the tree view and in the Settings tab set the EC2_SSH_PRIVATE_KEY to the file created and then
 press "Save Settings".<br><br>
 
 <img border=0 width=600 height=275 src="../gettingstarted/images/image10.jpg"><br><br>
 
 7. PuTTy is the Windows SSH client software used to connect to the linux servers. It has its own keypair file format that can be generated
-from the keypair. If you are running EC2Dream on windows client press the "PuTTYgen Key Generator" button, press OK on the following screen<br><br>
+from the keypair. If you are running Fogviz on windows client press the "PuTTYgen Key Generator" button, press OK on the following screen<br><br>
 <img border=0 width=250 height=125 src="../gettingstarted/images/image11.jpg"><br><br>
 
 and you will see the following screen<br><br>
@@ -156,20 +172,6 @@ and you will see the following screen<br><br>
 10. Save the settings.<br>
 
 <br><br>
-
-<h2 id="creatingapublicandprivatekey">Creating a Private and Public Key</h2>
-
-The public and private key are used by the amazon command line interface to access the Amazon Web Services API. <br><br>
-
-
-1. For Amazon the public and private keys are X.509 Certificate access keys that can be created, and downloaded from <a href="http://aws.amazon.com">http://aws.amazon.com</a> under Your Account, Access Identifiers<br><br>
-
-<img border=0 width=400 height=275 src="../gettingstarted/images/image11b.jpg"><br><br>
-
-2. For Eucalyptus the public and private keys are X.509 Certificate access keys that can be created, and downloaded from the 'Credentials' tab under you Eucalyptus account by pressing Download Certificate.<br><br>
-
-<img border=0 width=600 height=375 src="../gettingstarted/images/imagee1.jpg"><br><br>
-
 
  		<p>
         </p>
