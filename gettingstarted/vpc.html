@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Fogviz Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers......<i>visually</i></a></h1>
+	  <div class="description">
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./vpc.html">Usng Amazon Virtual Private Cloud</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./vpc.html">Usng Amazon Virtual Private Cloud</a></h2>
+
+<h3 id="introtag"></h3>
+  Amazon Virtual Private Cloud (VPC) is a powerful feature that gives complete control over your virtual networking environment, including selection of your own IP address range, creation of subnets, and configuration of route tables and network gateways.<br>
+  The main advantages are:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;-improved security<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;-the ability to configure any network requirement for your applications.<br><br>
+  To be able to access the servers in the VPC a VPN server (hardware or software) is required. The easiest way is to run an OpenVPN server.<br><br>
+
+
+<h3 id="create_vpc">Create a VPC</h3>
+a. Use CloudFormation to create a VPC. EC2Dream Fogviz supplies a template vpc_public_and_private_subnets.template<br>
+b. Select CloudFormaton and Templates from the EC2Dream Fogviz menu<br>
+c. Create a new Configuration by pressng the new button<br>
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagev01.jpg"><br><br>
+d. Create the Stack by pressing the "Create Stack" button (Templates can be validated by pressing the "Validate Template" button)<br>
+e. See the status of the stack creation by select CloudFormaton and Templates from the EC2Dream Fogviz menu<br>
+<img border=0 width=600 height=195 src="../gettingstarted/images/imagev02.jpg"><br><br>
+<br><br>
+<h3 id="create_vpc">Run an OpenVPN Server</h3>
+a. Create a Security Group called say vpn with ports 22,80.... open.<br>
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagev03.jpg"><br><br>
+
+b. Create a launch profile to start an OpenVPN amazon aws appliance with image for the region you are using.<br>
+Selet the appropriate ami as listed in:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/">http://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/</a><br>
+<img border=0 width=600 height=325 src="../gettingstarted/images/imagev04.jpg"><br><br>
+
+c. Configure OpenVPN<br>
+follow the instructions in the following documents:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/">http://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.whiteboardcoder.com/2012/12/amazon-aws-vpc-setting-up-openvpn-server.html">http://www.whiteboardcoder.com/2012/12/amazon-aws-vpc-setting-up-openvpn-server.html</a></br>
+<br><br>
+<h3 id="test_public_subnet_instance">Test accessing an instance in the public subnet of VPC</h3>
+ a. Create a security group in the public subnet of VPC.<br>
+ <img border=0 width=600 height=325 src="../gettingstarted/images/imagev05.jpg"><br><br>
+ a. Create a Launch Profile and Run an instance in the public subnet of VPC.<br>
+ <img border=0 width=600 height=325 src="../gettingstarted/images/imagev06.jpg"><br><br>
+ b. ssh to the instance.<br>
+ <img border=0 width=600 height=325 src="../gettingstarted/images/image28a.jpg"><br><br>
+ c. Shutdown the instance in the public subnet of VPC.<br>
+<br><br>
+<h3 id="nat_server">Add NAT Server support to the OpenVPN server</h3>
+To be able to access instances in the private subnet of the VPC we need a NAT Server to convert the address.<br> The easiest way to to add Nat server support to our Open VPN Server.<br>
+Follow the instructions in the section <b>Setting the OpenVPN server as the NAT Server</b> in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.whiteboardcoder.com/2012/12/amazon-aws-vpc-setting-up-openvpn-server.html">http://www.whiteboardcoder.com/2012/12/amazon-aws-vpc-setting-up-openvpn-server.html</a><br><br>
+a. Copy the configure-pat.sh  to /usr/local/sbin/configure-pat.sh<br>
+b. chmod u+x /usr/local/sbin/configure-pat.sh<br>
+c. Edit /etc/rc.local and add the following line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;/usr/local/sbin/configure-pat.sh<br>
+d. Restart the OpenVPN server<br>
+<br><br>
+<h3 id="test_private_subnet_instance">Test accessing an instance in the public subnet of VPC</h3>
+ a. Run an instance in the private subnet of VPC.<br>
+ b. ssh to the instance.<br>
+ c. Shutdown the instance in the private subnet of VPC.<br>
+<br><br>
+<h3 id="create_image_of_openvpn">Create an image of the openVPN server</h3>
+Create an image of the OpenVPN server by pressing the Package button in the Server tab of the OpenVpn Server.<br>
+<br><br>
+<h3 id="secure_openvpn_user">OPTIONAL: Secure the Openvpn user</h3>
+To improve securing on the OpenVPN sever you can secure the openvpn user as per the instructions:<br>
+Section <b>Disabling the Lock Out aka (bootstrap) account (optional)</b> in:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/">http://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/</a><br>
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+                      Back: <a href="../index.html">Back to Documentation</a>
+				      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>

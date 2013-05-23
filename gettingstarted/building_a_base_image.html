@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 
-<title>EC2Dream Documentation</title>
+<title>EC2Dream Fogviz Documentation</title>
 
 <link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../print.css" type="text/css" media="print" />
@@ -68,9 +68,9 @@ b. Instance instances store AMI as an encrypted file stored in Amazon S3.<br>
 
 <h2 id="buildabaseserver">Build a Base Server</h2>
 
-1. The Chef Repository of Fogviz Location is a setting in the Settings panel.<br>
+1. The Chef Repository of EC2Dream Fogviz Location is a setting in the Settings panel.<br>
 In the Chef Repository edit cookbooks/base/attributes/default.rb and change the atributes AMAZON_PUBLIC_KEY, AMAZON_ACCESS_KEY_ID and EC2_URL to
-the values in your Settings in Fogviz.
+the values in your Settings in EC2Dream Fogviz.
 If you are using a Windows Server also set the WIN_ADMIN_PASSWORD attribute.<br><br>
 2. In the Server panel for the running Base server press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the Base cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
 
