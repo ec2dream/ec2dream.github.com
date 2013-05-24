@@ -101,9 +101,7 @@ Also for production a Fixed IP is typically configured for outwardly facing part
 
  <img border=0 width=600 height=225 src="../gettingstarted/images/image50.jpg"><br><br>
 
- 2. When creating the launch profile for the App server add &elasticip=999.999.999.999 to the userdata<br><br>
-
- 3. If you do have an instance running associate the IP with an instance by click on the link icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"> and select the IP address and server and press "Associate" and then "Yes" to confirm.<br><br>
+ 2. If you do have an instance running associate the IP with an instance by click on the link icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"> and select the IP address and server and press "Associate" and then "Yes" to confirm.<br><br>
 
 <img border=0 width=600 height=225 src="../gettingstarted/images/image51.jpg"><br><br>
 
@@ -118,12 +116,28 @@ Also for production a Fixed IP is typically configured for outwardly facing part
 
    <img border=0 width=600 height=425 src="../gettingstarted/images/image51b.jpg"><br><br>
 
+Specify in the User Data the cookbook to run at startup:<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#!/bin/bash<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Chef run list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cat << "EOF" > /etc/chef/node.json<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "run_list": ["recipe[apache2]"]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EOF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json -l debug > /home/ubuntu/startup.log && echo "Server ready." | wall<br><br>
+</code>
+ If you are using an elastic ip add to the recipe<br>
+add to the attributes in the cookbook:<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:ip_address]  = "999.999.999.999"<br><br>
+</code>
    If you are using a separate volume specify in the user data:<br>
-&nbsp;&nbsp;&nbsp;vol=vol-xxxxxx&device=/dev/sdf&dir=/mnt/data&init_ebs=y<br><br>
-   If you are using an elastic ip specify in the user data:<br>
-&nbsp;&nbsp;&nbsp;elastic_ip=999.999.999.999<br><br>
-NOTE: Make sure to remove init_ebs=y before subsequent launches of the server<br><br>
-
+add to the attributes in the cookbook:<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:volume]  = vol-xxxxxx"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:device] = "/dev/sdf"<br>
+</code>
 3. If you are using a Windows Server download the iis cookbook from <a href="http://community.opscode.com/cookbooks/iis">http://community.opscode.com/cookbooks/iis</a> and unzip into the chef repository cookbook folder.
    Configure the attributes and use iis instead of App in the following steps.<br><br>
 
@@ -132,7 +146,6 @@ NOTE: Make sure to remove init_ebs=y before subsequent launches of the server<br
 
 <img border=0 width=600 height=325 src="../gettingstarted/images/image30h.jpg"><br><br>
 
-<b>NOTE:</b> Alternatively specify in the user data of the server chef_solo_run_list=recipe[apache2]  and chef solo will run at startup using the cookbooks in the base server<br><br>
 
 5. The App cookbook installs and runs apache so to test go into a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
    For ubuntu servers you will see an initial server like:<br><br>
@@ -145,7 +158,16 @@ NOTE: Make sure to remove init_ebs=y before subsequent launches of the server<br
 
 6. For Production either:<br>
     a. Deploy the Application cookbooks to Hosted Chef so servers can run the base image and install the application at startup by specifying in the user data: (see <a href="../gettingstarted/using_hosted_chef.html">Using Hosted Chef</a> for more details)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chef_run_list=recipe[apache2]<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#!/bin/bash<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Chef run list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cat << "EOF" > /etc/chef/node.json<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "run_list": ["role[apache2]"]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EOF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chef-client -c /etc/chef/config.rb -j /etc/chef/node.json -l debug > /home/ubuntu/startup.log && echo "Server ready." | wall<br><br>
+</code>
     b. Create an image from the Application built by the application cookbook and run that image in production.<br>
     c. Deploy the image to a source control system like Github and have the servers load the application cookbook at startup and install.<br><br>
 
