@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Fogviz Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers......<i>visually in chef</i></a></h1>
+	  <div class="description">
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./using_vagrant.html">Using Vagrant</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./using_vagrant.html">Using Vagrant</a></h2>
+
+<h3 id="introtag"></h3>
+    A good way to launch servers for testing is to use <a href="http://www.vagrantup.com/">vagrant</a>. Vagrant uses a file called Vagrantfile to hold the configuration
+    and this can be stoed in your repository an managed via version control. Vangrant supports running servers on your workstation as virtual machines as well as clouds like Amazon AWS.
+    You can also specify provisioning and access the server via ssh. <br><br>
+
+
+<h3 id="installvagrant">Install Vagrant</h3>
+
+ See <a href="http://docs.vagrantup.com/v2/installation/index.html">Installing Vagrant</a> and download and install vagrant for your workstation.<br>
+ For Amazon AWS also install the AWS plugin:<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/mitchellh/vagrant-aws">vagrant plugin install vagrant-aws</a><br>
+ &nbsp;&nbsp;&nbsp;&nbsp;vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box<br><br>
+ There is also support for other clouds like <a href="https://github.com/mitchellh/vagrant-rackspace">Rackspace</a><br><br>
+
+<h3 id="defineserver">Define Server</h3>
+1. In the Environment tab of EC2Dream Fogviz set the Vagrant Repository<br><br>
+<img border=0 width=500 height=325 src="../gettingstarted/images/imager1.jpg"><br><br>
+1. Select Vagrant from the EC2Dream Fogviz Tree and press the new button <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> to create a new server<br><br>
+<img border=0 width=500 height=225 src="../gettingstarted/images/imager2.jpg"><br><br>
+2. Edit the Vagrantfile by pressing the edit button <img border=0 width=20 height=20 src="../gettingstarted/icons/application_edit.png"><br><br>
+<img border=0 width=500 height=225 src="../gettingstarted/images/imager3.jpg"><br><br>
+3. Start the server by pressing the up button <img border=0 width=20 height=20 src="../gettingstarted/icons/rocket.png"><br><br>
+<img border=0 width=500 height=225 src="../gettingstarted/images/imager4.jpg"><br><br>
+4. Destroy the server by pressing the destroy button <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png"><br>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+                      Back: <a href="../index.html">Back to Documentation</a>
+				      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>
