@@ -34,12 +34,12 @@
 <div id="page">
   <div id="content">
 <div id="breadcrumb">
-       <a href="../index.html">Documentation</a> &gt; <a href="./vpc.html">Usng Amazon Virtual Private Cloud</a>
+       <a href="../index.html">Documentation</a> &gt; <a href="./vpc.html">Using Amazon Virtual Private Cloud (VPC)</a>
       </div>
 
     <div class="post" >
 	  <div class="entry">
-        <h2><a href="./vpc.html">Usng Amazon Virtual Private Cloud</a></h2>
+        <h2><a href="./vpc.html">Using Amazon Virtual Private Cloud (VPC)</a></h2>
 
 <h3 id="introtag"></h3>
   Amazon Virtual Private Cloud (VPC) is a powerful feature that gives complete control over your virtual networking environment, including selection of your own IP address range, creation of subnets, and configuration of route tables and network gateways.<br>
@@ -58,7 +58,13 @@ d. Create the Stack by pressing the "Create Stack" button (Templates can be vali
 e. See the status of the stack creation by select CloudFormaton and Templates from the EC2Dream Fogviz menu<br>
 <img border=0 width=600 height=195 src="../gettingstarted/images/imagev02.jpg"><br><br>
 <br><br>
-<h3 id="create_vpc">Run an OpenVPN Server</h3>
+<h3 id="using_bastion">Using a Bastion Host</h3>
+ A <a href="http://en.wikipedia.org/wiki/Bastion_host">Bastion Host</a> is a common way of providing access to servers that are not directly attached to the internet. SSH supports SSH tunnelling by creating an
+    SSH tunnel via the Bastion server to the server. The tunnel is attached to a local port on your client. The the server can be accessed via the tunnel using the local port.<br><br>
+
+See <a href="../gettingstarted/using_bastion_host.html">Using a Bastion Host</a> for more details<br><br>
+<h3 id="run_openvpn">Run an OpenVPN Server</h3>
+An alternative to a bastion host is to use a virtual private network (VPN). This extends a private network across a public network like the internet so servers in the VPC can be accessed. On Amazon AWS you can use a software solution via OpenVPN.<br><br>
 a. Create a Security Group called say vpn with ports 22,80.... open.<br>
 <img border=0 width=600 height=325 src="../gettingstarted/images/imagev03.jpg"><br><br>
 

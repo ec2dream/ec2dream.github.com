@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Fogviz Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
+	  <div class="description">
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Home">Methodology</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Tools" title="Home">Tools</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Home">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./using_vagrant.html">Using a Bastion Host to access servers in a VPC</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./using_vagrant.html">Using a Bastion Host to access servers in a VPC</a></h2>
+
+<h3 id="introtag"></h3>
+    A <a href="http://en.wikipedia.org/wiki/Bastion_host">Bastion Host</a> is a common way of providing access to servers that are not directly attached to the internet. SSH supports SSH tunnelling by creating an
+    SSH tunnel via the Bastion server to the server. The tunnel is attached to a local port on your client. The the server can be accessed via the tunnel using the local port.
+
+<h3 id="configbastion">Configure Bastion Server</h3>
+
+ A Bastion Server can be configured globally in the EC2Dream FogViz Environment tab.<br><br>
+ <img border=0 width=500 height=325 src="../gettingstarted/images/imageb01.jpg"><br><br>
+ and can also be overriden in the Launch profile or individual server by pressing the tunnel button next to the Local Port field on the server or launch tab.<br><br>
+ <img border=0 width=500 height=325 src="../gettingstarted/images/imageb02.jpg"><br><br>
+
+
+<h3 id="accessserver">Access a Server instance via the Bastion Host</h3>
+1. Click on the server in the server tree and in the Server tab define a local port to use for the SSH tunnel (this must be unique between different servers)<br><br>
+<img border=0 width=500 height=325 src="../gettingstarted/images/imageb03.jpg"><br><br>
+2. first create an SSH Tunnel by pressing the tunnel <img border=0 width=25 height=25 src="../gettingstarted/icons/tunnel.png"> button in the toolbar of the server tab.<br><br>
+<img border=0 width=500 height=325 src="../gettingstarted/images/imageb04.jpg"><br><br>
+3. then create an SSH to use the tunnel by pressing the terminal <img border=0 width=25 height=25 src="../gettingstarted/icons/monitor.png"> button in the server tab.<br><br>
+<img border=0 width=500 height=325 src="../gettingstarted/images/imageb05.jpg"><br><br>
+<h3 id="accessserver">Run Chef or Puppet via the Bastion Host</h3>
+1. Click on the server in the server tree and in the Server tab define a local port and create the SSH Tunnel by pressing the tunnel <img border=0 width=25 height=25 src="../gettingstarted/icons/tunnel.png"> button in the toolbar just as accessing a server using SSH via Bastion Host.<br><br>
+<img border=0 width=500 height=325 src="../gettingstarted/images/imageb04.jpg"><br><br>
+2. Run chef and puppet over the the SSH Tunnel by pressing the chef <img border=0 width=25 height=25 src="../gettingstarted/icons/chef.png"> or puppet <img border=0 width=25 height=25 src="../gettingstarted/icons/puppet.png">buttons.<br><br>
+<img border=0 width=500 height=325 src="../gettingstarted/images/imageb06.jpg"><br><br>
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+                      Back: <a href="../index.html">Back to Documentation</a>
+				      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>
