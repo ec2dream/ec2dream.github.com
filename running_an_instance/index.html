@@ -49,8 +49,8 @@
 
 Every launched instance requires that you have a security group defined to specify what network traffic is allowed to reach the instance. By default no traffic is enabled.
 <br>
-We will create a new group called App. You might like to call the group another name that identifies your application.<br>
-<h3>Rackspace</h3> Skip this step as Rackspace currently does not support security groups.<br><br>
+We will create a new group called Base. You might like to call the group another name that identifies your application.<br><br>
+<b>NOTE:</b> Skip this step as Rackspace currently does not support security groups.<br><br>
 
 1. In the tree view click on Security Groups in the left hand tree and click on the New button <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> <br>
 2. Create a Security Group called Base and check the windows server option if creating a windows server.<br><br>
@@ -134,6 +134,48 @@ Click on the Remote Desktop icon <img border=0 width=20 height=20 src="../gettin
 <b>NOTE:</b> The Win Admin Password field contains the password<br><br>
 
 <img border=0 width=600 height=325 src="../gettingstarted/images/imagew28b.jpg"><br><br>
+<br><br>
+
+<h2 id="createanewamazonebsvolume">Optionally Create a separate Volume</h2>
+
+To create a new Volume, called in Amazon Elastic Block Storage (EBS), perform the following steps:<br><br>
+
+1. Click on the "Volumes" in the tree view.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image23.jpg"><br><br>
+
+2. Create a Volume by clicking on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"><br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image23a.jpg"><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;-Give the volume a nickname i.e. App.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-Type in the size in gigabytes (GB) of the volume you would like between 1 and 1000.
+I would recommend 10GB.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-Specify the availability zone and "no snapshot".<br>
+<b>NOTE:</b> A volume must be in the same availability zone as an instance. You can optionally specify an Availability Zone if desired or the snapshot id to create a
+volume from. <br><br>
+3. Click the "Create" button, and your volume will be created.<br>
+
+<b>NOTE:</b> If you accidentally create a volume in the wrong zone, you can
+either create a new blank volume in the proper zone, or create a new volume
+based on a snapshot of a volume in another zone.<br><br>
+4. If a server instance is already running it can be attached dynamically to the instance by pressing the attach button <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png">.
+Then mounted and initialised on the server.<br><br>
+5. It can also be attached, mounted and initialised by the cloud_init.rb script at startup by specifying parameters in the userdata<br><br>
+
+<h2 id="creatinganeweip">Optionally create a new Fixed IP</h2>
+Some applications like (for example Magento) have the IP Address or URL is configured in the application so need a fixed IP Address.<br>
+
+Also for production a Fixed IP is typically configured for outwardly facing parts.<br>
+
+ 1. Click on "IP Addresses" in the tree view and then click on the new icon <img border=0 width=20 height=20 src="../gettingstarted/icons/new.png"> and a new IP address will be allocated.<br><br>
+
+ <img border=0 width=600 height=225 src="../gettingstarted/images/image50.jpg"><br><br>
+
+ 2. If you do have an instance running associate the IP with an instance by click on the link icon <img border=0 width=20 height=20 src="../gettingstarted/icons/link.png"> and select the IP address and server and press "Associate" and then "Yes" to confirm.<br><br>
+
+<img border=0 width=600 height=225 src="../gettingstarted/images/image51.jpg"><br><br>
+
 
 
  		<p>

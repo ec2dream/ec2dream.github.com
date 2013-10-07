@@ -15,7 +15,7 @@
 <body>
   <div id="header">
     <div id="headerimg">
-	  <h1><a href="http://ec2dream.github.com">Build and Manage Cloud Servers</a></h1>
+	  <h1><a href="http://ec2dream.github.com">EC2Dream - Build and Manage Cloud Servers</a></h1>
 	  <div class="description">
 </div>
 	</div>
@@ -35,20 +35,20 @@
 <div id="page">
   <div id="content">
 <div id="breadcrumb">
-       <a href="../index.html">Documentation</a> &gt; <a href="./building_a_base_image.html">Build a Base Image with Chef Solo</a>
+       <a href="../index.html">Documentation</a> &gt; <a href="./building_a_base_image.html">Build a Server with Chef Solo or Puppet Apply</a>
       </div>
 
     <div class="post" >
 	  <div class="entry">
-        <h2><a href="../index.html">Build a Base Image with Chef Solo</a></h2>
+        <h2><a href="../index.html">Build a Server with Chef Solo or Puppet Apply</a></h2>
 
             <p>
 
  <h2>Core Concepts</h2>
 
-<h3>Cookbook</h3>
+<h3>Chef Cookbook</h3>
 
-Cookbooks are the configration definitions used by Chef.
+Cookbooks are the configuration definitions used by Chef.
 Cookbooks contain Attributes, Definitions, File Distribution, Libraries, Recipes, Resources and Templates that are rendered on Chef-configured machines with your dynamically substituted values. Think config files on steroids.
 
 
@@ -64,23 +64,83 @@ b. Instance instances store AMI as an encrypted file stored in Amazon S3.<br>
 </p>
 
 <br><br>
-
-
-<h2 id="buildabaseserver">Build a Base Server</h2>
-
-1. The Chef Repository of EC2Dream Fogviz Location is a setting in the Settings panel.<br>
-In the Chef Repository there is a base in the cookbooks directory. Add any additional requirements for all servers to the base cookbook.
-A sample cloud_init script can be used to pass parameter in the user data although it is generally preferable to run chef at start up and pass a chef node.json file.
+In this approach a server is built without reference to a Chef Server or Puppet Master. Chef Solo or Puppet apply is used to build the servers and then an image is made of the server to use in the future.<br><br>
+This is good for a small number of servers, say up to 50, or if your server needs to start quickly
+as part of an autoscaling group.<br><br>
+It is also a good approach for developing and testing cookbooks or manifests even if later a chef server or puppet master is used to configure the servers in production.
 <br><br>
-2. In the Server panel for the running Base server press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the Base cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
+<br><br>
+<h2 id="buildabaseserver">Build a Server running apache</h2>
 
+1. Set the Chef or Puppet Repository location in the EC2Dream Fogviz Environments panel.<br>
+In the Chef Repository there is a base cookbook in the cookbooks directory. Add any additional requirements for all servers to the base cookbook.
+A sample cloud_init script can be used to pass parameters in the user data as an alternative to running chef or puppet at start up and pass a chef node.json file.
+<br><br>
+2. If you are using an elastic ip add to the recipe<br>
+add to the attributes in the cookbook:<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:ip_address]  = "999.999.999.999"<br><br>
+</code>
+3. If you are using a separate volume specify in the user data:<br>
+add to the attributes in the cookbook:<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:volume]  = vol-xxxxxx"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:device] = "/dev/sdf"<br>
+</code><br>
+4. If you are using a Windows Server download the iis cookbook from <a href="http://community.opscode.com/cookbooks/iis">http://community.opscode.com/cookbooks/iis</a> and unzip into the chef repository cookbook folder.
+   Configure the attributes and use iis instead of app in the following steps.<br><br>
+
+5. Go to the Server panel for the running the Base server started earlier:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;To use chef change the Chef Node to app and press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;To use puppet change the Puppet Manifest to test.pp and press on the Puppet button <img border=0 width=20 height=20 src="../gettingstarted/icons/puppet.png"><br><br>
+This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
 <img border=0 width=600 height=325 src="../gettingstarted/images/image30h.jpg"><br><br>
+6. The Chef or Puppet run will have installed apache so to test go into a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
+   For ubuntu servers you will see an initial server like:<br><br>
 
-3. Create a Base Image<br>
+<img border=0 width=400 height=150 src="../gettingstarted/images/chef_apache.png"><br>
+
+ and for Centos:<br><br>
+<img border=0 width=400 height=225 src="../gettingstarted/images/centos_apache_welcome.jpg"><br><br>
+7. Create an  Image of the Server<br>
   Create an Image by pressing on the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png"> in the server tab.<br>
  <img border=0 width=600 height=325 src="../gettingstarted/images/image30d.jpg"><br><br>
 
-<h3>Amazon Instance Store Images</h3>
+8. Shutdown the Server Instance.<br><br>
+
+<h2 id="runapplication">Create Launch Profile and launch the server from the image</h2>
+
+<br>
+1. Create a Security Group for the server called App.<br><br>
+<h3>Rackspace</h3> Skip creating a security as Rackspace currently does not support security groups. use the default group in EC2Dream.<br><br>
+
+2. Create a launch profile for App with an Image id created earlier.<br>
+
+   <img border=0 width=600 height=425 src="../gettingstarted/images/image51b.jpg"><br><br>
+
+To do more chef processing at startup (for example to deploy your html pages) specify in the User Data the cookbook to run at startup:<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#!/bin/bash<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Chef run list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cat << "EOF" > /etc/chef/node.json<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "run_list": ["role[app]"]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EOF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json -l debug > /home/ubuntu/startup.log && echo "Server ready." | wall<br><br>
+</code>
+<h2 id="runapplication">Other applications</h2>
+For some popular applications follow the following instructions to install from their cookbooks :<br><br>
+
+&nbsp;&nbsp;&nbsp;For Alfresco see  <a href="./installing_alfresco.html">Install Alfresco</a><br><br>
+
+&nbsp;&nbsp;&nbsp;For Magento see  <a href="./installing_magento.html">Install Magento</a><br><br>
+
+&nbsp;&nbsp;&nbsp;For OpenBravo see  <a href="./installing_openbravo.html">Install OpenBravo</a>. Currently no cookbook so install from script.<br><br>
+
+&nbsp;&nbsp;&nbsp;For SugarCRM see  <a href="./installing_sugarcrm.html">Install SugarCRM</a><br><br>
+
+<h2>Amazon Instance Store Images</h2>
 
 &nbsp;&nbsp;&nbsp;&nbsp;   -Configure an run the bundle.rb script on the server<br>
 
@@ -90,6 +150,7 @@ A sample cloud_init script can be used to pass parameter in the user data althou
 
    <img border=0 width=600 height=225 src="../gettingstarted/images/image30g.jpg"><br><br>
 
+
 5. You might like to test the new base image by launching it and proving it starts up<br><br>
  		<p>
         </p>
@@ -98,7 +159,7 @@ A sample cloud_init script can be used to pass parameter in the user data althou
 		</div>
 		<div class="post-content">
 		<div id="breadcrumb">
-				       Next: <a href="../index.html">Documentation</a> &gt; <a href="../application/index.html">Build an Application</a>
+				       Next: <a href="../index.html">Back to Documentation</a>
 		      </div>
 		</div>
 		<div class="post-info">
