@@ -65,8 +65,10 @@ b. Instance instances store AMI as an encrypted file stored in Amazon S3.<br>
 
 <br><br>
 In this approach a server is built without reference to a Chef Server or Puppet Master. Chef Solo or Puppet apply is used to build the servers and then an image is made of the server to use in the future.<br><br>
-This is good for a small number of servers, say up to 50, or if your server needs to start quickly
-as part of an autoscaling group.<br><br>
+This is good for:<br>
+&nbsp;&nbsp;&nbsp;-a small number of servers, say up to 50,<br>
+&nbsp;&nbsp;&nbsp;-a very large number of servers that would overwhelm a chef server or puppet master (over 500?)<br>
+&nbsp;&nbsp;&nbsp;-or if your server needs to start quicklyas part of an autoscaling group.<br><br>
 It is also a good approach for developing and testing cookbooks or manifests even if later a chef server or puppet master is used to configure the servers in production.
 <br><br>
 <br><br>
@@ -76,13 +78,13 @@ It is also a good approach for developing and testing cookbooks or manifests eve
 In the Chef Repository there is a base cookbook in the cookbooks directory. Add any additional requirements for all servers to the base cookbook.
 A sample cloud_init script can be used to pass parameters in the user data as an alternative to running chef or puppet at start up and pass a chef node.json file.
 <br><br>
-2. If you are using an elastic ip add to the recipe<br>
+2. If you are using an elastic ip add to the chef recipe<br>
 add to the attributes in the cookbook:<br>
 <code>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:ip_address]  = "999.999.999.999"<br><br>
 </code>
 3. If you are using a separate volume specify in the user data:<br>
-add to the attributes in the cookbook:<br>
+add to the attributes in the chef cookbook:<br>
 <code>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:volume]  = vol-xxxxxx"<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default[:base][:device] = "/dev/sdf"<br>
@@ -106,19 +108,32 @@ This will run in a separate window and should finish with a message saying succe
   Create an Image by pressing on the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png"> in the server tab.<br>
  <img border=0 width=600 height=325 src="../gettingstarted/images/image30d.jpg"><br><br>
 
-8. Shutdown the Server Instance.<br><br>
+<b>NOTE:</b> Amazon Instance Store Images<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;   -Configure an run the bundle.rb script on the server<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;   -Register the image by pressing the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png">in the server tab.<br><br>
+
+8. Shutdown the server by pressing the Terminate button <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">in the server tab.<br> and update the base launch profile with the new image.<br>
+
+   <img border=0 width=600 height=225 src="../gettingstarted/images/image30g.jpg"><br><br>
+
+
+9. You might like to test the new base image by launching it and proving it starts up<br><br>
 
 <h2 id="runapplication">Create Launch Profile and launch the server from the image</h2>
 
 <br>
 1. Create a Security Group for the server called App.<br><br>
-<h3>Rackspace</h3> Skip creating a security as Rackspace currently does not support security groups. use the default group in EC2Dream.<br><br>
+<b>NOTE:</b> Skip creating a security as Rackspace currently does not support security groups. use the default group in EC2Dream.<br><br>
 
 2. Create a launch profile for App with an Image id created earlier.<br>
 
    <img border=0 width=600 height=425 src="../gettingstarted/images/image51b.jpg"><br><br>
 
-To do more chef processing at startup (for example to deploy your html pages) specify in the User Data the cookbook to run at startup:<br>
+To do more  processing at startup (for example to deploy your html pages) specify in the User Data the cookbook to run at startup:<br><br>
+
+chef:<br>
 <code>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#!/bin/bash<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Chef run list<br>
@@ -129,6 +144,20 @@ To do more chef processing at startup (for example to deploy your html pages) sp
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EOF<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json -l debug > /home/ubuntu/startup.log && echo "Server ready." | wall<br><br>
 </code>
+puppet:<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#!/bin/bash<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puppet apply  -v -d --modulepath /var/local/pocketknife/modules /var/local/pocketknife/manifests/app.pp
+</code><br><br>
+NOTE: An extra enhancement could be to add a step to checkout the latest copy of the chef or puppet repository from a source control system like git.<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mv /var/local/pocketknife /var/local/pocketknife.orig<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git clone $repo_source /var/local/pocketknife<br>
+</code>
+This is the best way to scale out to a large number of servers without hitting limits imposed by a chef server or puppet master. User data can also by specifed in a autoscaling group configuration.<br><br>
+See <a href="http://bitfieldconsulting.com/scaling-puppet-with-distributed-version-control">Scaling Puppet with Git</a> and
+<a href="http://blog.codento.com/2012/02/hello-ec2-part-1-bootstrapping-instances-with-cloud-init-git-and-puppet/">Bootstrapping Instances with cloud-init, git, and puppet</a><br><br>
+
 <h2 id="runapplication">Other applications</h2>
 For some popular applications follow the following instructions to install from their cookbooks :<br><br>
 
@@ -140,18 +169,7 @@ For some popular applications follow the following instructions to install from 
 
 &nbsp;&nbsp;&nbsp;For SugarCRM see  <a href="./installing_sugarcrm.html">Install SugarCRM</a><br><br>
 
-<h2>Amazon Instance Store Images</h2>
 
-&nbsp;&nbsp;&nbsp;&nbsp;   -Configure an run the bundle.rb script on the server<br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;   -Register the image by pressing the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png">in the server tab.<br><br>
-
-4. Shutdown the server by pressing the Terminate button <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">in the server tab.<br> and update the base launch profile with the new image.<br>
-
-   <img border=0 width=600 height=225 src="../gettingstarted/images/image30g.jpg"><br><br>
-
-
-5. You might like to test the new base image by launching it and proving it starts up<br><br>
  		<p>
         </p>
     </p>

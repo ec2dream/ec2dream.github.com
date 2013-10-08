@@ -34,62 +34,76 @@
 <div id="page">
   <div id="content">
 <div id="breadcrumb">
-       <a href="../index.html">Documentation</a> &gt; <a href="./using_hosted_chef.html">Build a Server to use with Chef Server, Puppet Master or Hosted Chef</a>
+       <a href="../index.html">Documentation</a> &gt; <a href="./using_hosted_chef.html">Build a Server to use with Chef Server or Hosted Chef</a>
       </div>
 
     <div class="post" >
 	  <div class="entry">
-        <h2><a href="./index.html">Build a Server to use with Chef Server, Puppet Master or Hosted Chef</a></h2>
+        <h2><a href="./index.html">Build a Server to use with Chef Server or Hosted Chef</a></h2>
             <p>
 
 <br><br>
-<h2 id="signupforhostedchef">Setup for Chef Server or Hosted Chef</h2>
+<h2 id="signupforhostedchef">Install Chef on your workstation</h2>
+1. Install Chef client on your workstation so you can interact with Chef Server or Hosted Server:<br><br>
+Follow <a href="http://docs.opscode.com/install_workstation.html">Install Chef 11.x on a Workstation</a>.<br><br>
+
+NOTE: EC2Dream has a sample chef repository in the EC2Dream Home directory at chef/chef-repo.<br><br>
+
+2. Upload the base and apache2 cookbook from the Chef Repository to Hosted Chef or your Chef Server.<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;cd to the top level of the chef-repo and enter:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;knife upload cookbooks<br><br>
+
+3. Create a roles base and app for the apache2 cookbook<br><br>
+knife role create base<br>
+In the $EDITOR enter the role data in JSON:<br><br>
 
 
+{<br>
+  "name": "base",<br>
+  "chef_type": "role",<br>
+  "json_class": "Chef::Role",<br>
+  "run_list": [<br>
+    "recipe[base]"<br>
+  ]<br>
+}<br><br>
 
-1. Find (or setup) the location of Chef Repository in the Environment panel.<br><br>
+knife role create app<br>
+In the $EDITOR enter the role data in JSON:<br><br>
 
-2. Install Chef client on your workstation so you can interact with Chef Server or Hosted Server:<br>
-a. For Windows clients follow the  <a href="http://wiki.opscode.com/display/chef/Workstation+Setup+for+Windows">Chef Workstation Setup for Windows</a><br><br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;NOTE: For Windows you can alternatively install the chef workstation into your current ruby:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;a. Download the Ruby Devkit from http://rubyinstaller.org/downloadsDevKit. At time of writing latest version is:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;b. Unzip to a folder<br>
-&nbsp;&nbsp;&nbsp;&nbsp;c. In a windows command window cd the the folder and run<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ruby dk.rb init<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        ruby dk.rb install<br>
-&nbsp;&nbsp;&nbsp;&nbsp;d. Run:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install ruby-wmi<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install win32-process<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install win32-service<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install win32-open3  (only for Ruby 1.8.7)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      gem install chef<br><br>
+{<br>
+  "name": "app",<br>
+  "chef_type": "role",<br>
+  "json_class": "Chef::Role",<br>
+  "run_list": [<br>
+    "recipe[apache2]"<br>
+  ]<br>
+}<br><br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;NOTE: When installing ruby-wmi if you get error:&nbsp;&nbsp;SyntaxError: C:/installs/ruby19_mingw/lib/ruby/gems/1.9.1/gems/ruby-wmi-0.2.2/lib/ruby-wmi/base.rb:52: syntax error, unexpected :, expecting keyword_then or , or ; <br>
-&nbsp;&nbsp;&nbsp;&nbsp;Then edit the file ruby-wmi/base.rb, lines 52 and 53 and change :'s to ;'s<br><br>
+When finished, save it.<br><br>
 
-b. For Other clients follow either:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://wiki.opscode.com/display/chef/Workstation+Setup+for+Debian+and+Ubuntu">Workstation Setup for Debian and Ubuntu</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://wiki.opscode.com/display/chef/Workstation+Setup+for+CentOS%2C+Red+Hat%2C+Fedora">Workstation Setup for CentOS, Red Hat, Fedora</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://wiki.opscode.com/display/chef/Workstation+Setup+for+Mac+OS+X">Workstation Setup for Mac OS X</a><br><br>
 
-3. Upload the apache2 cookbook from the Chef Repository to Hosted Chef or your Chef Server.<br><br>
 <h2 id="buildabaseserver">Build a Base Server for Hosted Chef or Chef Server</h2>
 We just need to build s Server with a Chef Client installed and configured to connect to Hosted Chef or Chef Server<br><br>
-1. Edit cookbooks/base_hosted/attributes/default.rb and change the atributes ORGANIZATION to your organization in Hosted Chef.<br>
-   Copy your organisation verification key file to the cookbooks/base_hosted/files/default directory<br><br>
 
-2. Launch a new base server and when running specify in the Server panel a Chef Node of 'base_hosted' then press the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"> and run the base_hosted cookbook. This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
+1. Launch a new base server.<br><br>
 
-3. Create a Base_hosted Image<br>
+2. Use knife bootstrap command. Follow <a href="http://docs.opscode.com/install_bootstrap.html">Bootstrap a Node</a><br><br>
+
+knife bootstrap 10.0.10.245<br>
+  --ssh-user ubuntu<br>
+  --sudo<br>
+  --identity-file C:\key\test.pem<br>
+  --node-name base<br>
+  --run-list 'role[base]'<br><br>
+
+or use a shell script like https://github.com/solarce/awsadvent2012/blob/master/chef-bootstrap.sh
+
+Also see <a href="http://clarkdave.net/2013/05/creating-ec2-instances-in-an-amazon-vpc-using-chef-and-knife/">Creating and bootstrapping EC2 instances in an Amazon VPC using Chef & Knife</a><br><br>
+3. Create a Base Image<br>
    a. For EBS Images create an Image by pressing on the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png"> in the server tab.<br>
  <img border=0 width=600 height=325 src="../gettingstarted/images/image30d.jpg"><br><br>
-
-   b. For Instance Store Images:<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;   -Configure an run the bundle.rb script on the server<br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;   -Register the image by pressing the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png">in the server tab.<br><br>
 
 4. Shutdown the server by pressing the Terminate button <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">in the server tab.<br> and update the base launch profile with the new image.<br>
 
@@ -97,12 +111,15 @@ We just need to build s Server with a Chef Client installed and configured to co
 
 <h2 id="runthe application">Run the application</h2>
 
-1. Create or update the launch profile for App with an Image id for the Base_hosted Image created earlier and specify in the user data:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chef_run_list=recipe[apache2]<br>
-NOTE: For Windows Servers use iis instead of apache2<br><br>
+1. Create or update the launch profile for App with an Image id for the Base Image created earlier and specify in the user data:<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;#!/bin/bash<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sudo chef-client -c /etc/chef/config.rb -N app -l debug > /home/ubuntu/startup.log && echo "Server ready." | wall
+</code><br><br>
+
 2. Launch the server and the apache2 application will install at startup<br><br>
 
-3. The apache is running by going to a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
+3. Check apache is running by going to a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
    For ubuntu servers you will see an initial server like:<br><br>
 
 <img border=0 width=400 height=150 src="../gettingstarted/images/chef_apache.png"><br>
@@ -152,7 +169,7 @@ NOTE: For Windows Servers use iis instead of apache2<br><br>
 
 <div id="credits">
 	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
-	<div class="alignleft">Copyright &copy; 2010 ElastDream. All rights reserved.</div>
+	<div class="alignleft">Copyright &copy; 2010 EC2Dream. All rights reserved.</div>
 </div>
 
 </div>
