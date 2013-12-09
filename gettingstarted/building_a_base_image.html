@@ -72,7 +72,7 @@ This is good for:<br>
 It is also a good approach for developing and testing cookbooks or manifests even if later a chef server or puppet master is used to configure the servers in production.
 <br><br>
 <br><br>
-<h2 id="buildabaseserver">Build a Server running apache</h2>
+<h2 id="buildabaseserver">Build a Server running a webserver</h2>
 
 1. Set the Chef or Puppet Repository location in the EC2Dream Fogviz Environments panel.<br>
 In the Chef Repository there is a base cookbook in the cookbooks directory. Add any additional requirements for all servers to the base cookbook.
@@ -92,6 +92,17 @@ add to the attributes in the chef cookbook:<br>
 4. If you are using a Windows Server download the iis cookbook from <a href="http://community.opscode.com/cookbooks/iis">http://community.opscode.com/cookbooks/iis</a> and unzip into the chef repository cookbook folder.
    Configure the attributes and use iis instead of app in the following steps.<br><br>
 
+5. If you are using puppet make sure that Puppet Version 3 is available from the repositories<br>
+&nbsp;&nbsp;&nbsp;&nbsp;For ubuntu version 12<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo dpkg -i puppetlabs-release-precise.deb<br>
+</code>
+&nbsp;&nbsp;&nbsp;&nbsp;For 64 bit Centos or Redhat<br>
+<code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm<br><br>
+</code>    
+   
 5. Go to the Server panel for the running the Base server started earlier:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;To use chef change the Chef Node to app and press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"><br>
 &nbsp;&nbsp;&nbsp;&nbsp;To use puppet change the Puppet Manifest to test.pp and press on the Puppet button <img border=0 width=20 height=20 src="../gettingstarted/icons/puppet.png"><br><br>
