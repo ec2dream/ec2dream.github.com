@@ -101,21 +101,27 @@ add to the attributes in the chef cookbook:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;For 64 bit Centos or Redhat<br>
 <code>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm<br><br>
-</code>    
+</code>   
+
+6. For ubuntu for ease of testing it is useful to be able to sudo without a password. To Set this up:<br>
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edit /etc/sudoers file <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and change to<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%sudo ALL=NOPASSWD: ALL<br><br> 
    
-5. Go to the Server panel for the running the Base server started earlier:<br>
+7. Go to the Server panel for the running the Base server started earlier:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;To use chef change the Chef Node to app and press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"><br>
 &nbsp;&nbsp;&nbsp;&nbsp;To use puppet change the Puppet Manifest to test.pp and Puppet Role to webserver and press on the Puppet button <img border=0 width=20 height=20 src="../gettingstarted/icons/puppet.png"><br><br>
 This will run in a separate window and should finish with a message saying succesfully applied. <br><br>
 <img border=0 width=600 height=325 src="../gettingstarted/images/image30h.jpg"><br><br>
-6. The Chef or Puppet run will have installed apache so to test go into a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
+8. The Chef or Puppet run will have installed apache so to test go into a browser and run http://ec2-99-99-999-999.compute-1.amazonaws.com using the Public DSN from the server panel<br>
    For ubuntu servers you will see an initial server like:<br><br>
 
 <img border=0 width=400 height=150 src="../gettingstarted/images/chef_apache.png"><br>
 
  and for Centos:<br><br>
 <img border=0 width=400 height=225 src="../gettingstarted/images/centos_apache_welcome.jpg"><br><br>
-7. Create an  Image of the Server<br>
+9. Create an  Image of the Server<br>
   Create an Image by pressing on the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png"> in the server tab.<br>
  <img border=0 width=600 height=325 src="../gettingstarted/images/image30d.jpg"><br><br>
 
@@ -125,12 +131,12 @@ This will run in a separate window and should finish with a message saying succe
 
 &nbsp;&nbsp;&nbsp;&nbsp;   -Register the image by pressing the Create Image button <img border=0 width=20 height=20 src="../gettingstarted/icons/package.png">in the server tab.<br><br>
 
-8. Shutdown the server by pressing the Terminate button <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">in the server tab.<br> and update the base launch profile with the new image.<br>
+10. Shutdown the server by pressing the Terminate button <img border=0 width=20 height=20 src="../gettingstarted/icons/disconnect.png">in the server tab.<br> and update the base launch profile with the new image.<br>
 
    <img border=0 width=600 height=225 src="../gettingstarted/images/image30g.jpg"><br><br>
 
 
-9. You might like to test the new base image by launching it and proving it starts up<br><br>
+11. You might like to test the new base image by launching it and proving it starts up<br><br>
 
 <h2 id="runapplication">Create Launch Profile and launch the server from the image</h2>
 
