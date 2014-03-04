@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 
-<title>EC2Dream Fogviz Documentation</title>
+<title>EC2Dream Documentation</title>
 
 <link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../print.css" type="text/css" media="print" />
@@ -47,18 +47,18 @@
 
 <h3>Environment</h3>
 
-This is the basic unit of administration in the EC2Dream Fogviz. It identifies a particular cloud by access keys and URL or region. They are stored in a repository that is either local on your machine or another location that could be shared.
+This is the basic unit of administration in the EC2Dream. It identifies a particular cloud by access keys and URL or region. They are stored in a repository that is either local on your machine or another location that could be shared.
 
 <h3>Cloud Access Key and Secret Access Key</h3>
 
-The Access Key and Secret Access Key identify yourself when making requests to Cloud API. EC2Dream Fogviz internally
+The Access Key and Secret Access Key identify yourself when making requests to Cloud API. EC2Dream internally
 communicates with the Cloud API using the fog cloud services library to perform system admin tasks. You should never give out these keys to anyone.
 
 
 <h3>Amazon Public and Private Key</h3>
 
 Amazon also provides a second pair or credentials an X.509 Certificate consisting of a Public Key and Private Key. Typically these
-are used by Amazon EC2 command tools but not by  fog or EC2Dream Fogviz. See <a href="http://alestic.com/2009/11/ec2-credentials">http://alestic.com/2009/11/ec2-credentials</a> for an
+are used by Amazon EC2 command tools but not by  fog or EC2Dream. See <a href="http://alestic.com/2009/11/ec2-credentials">http://alestic.com/2009/11/ec2-credentials</a> for an
 explaination of credentials.
 
 <h3>Keypair</h3>
@@ -70,11 +70,11 @@ keys.
 
 <h2 id="creatingaenvironment">Creating an Environment</h2>
 
-1. Run EC2Dream Fogviz in a command prompt (or if you installed it as ec2dream run ec2dream).<br><br>
+1. Run EC2Dream in a command prompt.<br><br>
 
 <img border=0 width=600 height=145 src="../gettingstarted/images/image01.jpg"><br><br>
 
-The very first time EC2Dream Fogviz is run it prompts for the location of the repository. Take the default local repository.<br><br>
+The very first time EC2Dream is run it prompts for the location of the repository. Take the default local repository.<br><br>
 
 <img border=0 width=600 height=275 src="../gettingstarted/images/image02.jpg"><br><br>
 
@@ -146,13 +146,13 @@ NOTE: For linux/Mac OSX clients remove permissions for all and group access<br><
 
 5. Make a backup copy of the file and store in a secure place as it cannot be repeatedly downloaded.<br><br>
 
-6. In the EC2Dream Fogviz click on "Env - xxxxxxx" in the tree view and in the Environment tab set the EC2_SSH_PRIVATE_KEY to the file created and then
+6. In the EC2Dream click on "Env - xxxxxxx" in the tree view and in the Environment tab set the EC2_SSH_PRIVATE_KEY to the file created and then
 press "Save Settings".<br><br>
 
 <img border=0 width=600 height=275 src="../gettingstarted/images/image10.jpg"><br><br>
 
 7. PuTTy is the Windows SSH client software used to connect to the linux servers. It has its own keypair file format that can be generated
-from the keypair. If you are running EC2Dream Fogviz on windows client press the "PuTTYgen Key Generator" button, press OK on the following screen<br><br>
+from the keypair. If you are running EC2Dream on windows client press the "PuTTYgen Key Generator" button, press OK on the following screen<br><br>
 <img border=0 width=250 height=125 src="../gettingstarted/images/image11.jpg"><br><br>
 
 and you will see the following screen<br><br>

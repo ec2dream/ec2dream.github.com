@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 
-<title>EC2Dream Fogviz Documentation</title>
+<title>EC2Dream Documentation</title>
 
 <link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../print.css" type="text/css" media="print" />
@@ -46,10 +46,10 @@
     of devops development on cloud servers where you pay an hourly charge for ever time you start a server. Once you have the cookbooks or modules developed
     you can can then run it on a cloud server and then do integration testing with the other servers in your stack.<br><br>
 
-	First you need a running linux server for testing. 
+	First you need a running linux server for testing.
 
 <h3 id="linuxserver">Setup a running Ubuntu linux server with VMware player</h3>
- 
+
  I followed  <a href="http://www.howtogeek.com/howto/11287/how-to-run-ubuntu-in-windows-7-with-vmware-player/">http://www.howtogeek.com/howto/11287/how-to-run-ubuntu-in-windows-7-with-vmware-player</a>.<br>
  <br>
  1. Install VMWare Player Software<br>
@@ -91,9 +91,9 @@
  <h3 id="centoslinuxserver">Setup a running Centos linux server with Virtual Box</h3>
 
  An alternative to VMware player is Oracle Virtual Box. <br>
- 
- 
- 
+
+
+
  1. Install Virtual Box<br>
  &nbsp;&nbsp;&nbsp;&nbsp;Download and install Virtual Box from <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a><br><br>
 
@@ -103,29 +103,29 @@
  3. Create the virtual machine by following <a href="http://extr3metech.wordpress.com/2012/10/25/centos-6-3-installation-in-virtual-box-with-screenshots/
 ">http://extr3metech.wordpress.com/2012/10/25/centos-6-3-installation-in-virtual-box-with-screenshots/</a>.<br><br>
 
- 4. Setup the networking so you can access the server from ssh and the server can access the internet by following  
+ 4. Setup the networking so you can access the server from ssh and the server can access the internet by following
 <a href="http://extr3metech.wordpress.com/2013/05/23/configuring-network-in-centos-6-3-virtual-box-screenshots/">http://extr3metech.wordpress.com/2013/05/23/configuring-network-in-centos-6-3-virtual-box-screenshots/</a>.<br><br>
- 
- 5. Make sure bind and ssh installed:<br> 
- &nbsp;&nbsp;&nbsp;&nbsp;yum install bind-utils<br> 
- &nbsp;&nbsp;&nbsp;&nbsp;yum install openssh-clients<br> <br> 
 
- 6. If using puppet update to point to the lastest puppet version, at time of writing was puppet 3.3:<br>   
-&nbsp;&nbsp;&nbsp;&nbsp;rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm<br> <br> 
+ 5. Make sure bind and ssh installed:<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;yum install bind-utils<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;yum install openssh-clients<br> <br>
 
- 7. Check the resolution of hosts and set the hostname of server if desired:<br> 
-&nbsp;&nbsp;&nbsp;&nbsp;edit /etc/resolv.conf <br> 
-&nbsp;&nbsp;&nbsp;&nbsp;edit /etc/sysconfig/network<br> 
-&nbsp;&nbsp;&nbsp;&nbsp;logoff to get new hostname<br> <br> 
- 
+ 6. If using puppet update to point to the lastest puppet version, at time of writing was puppet 3.3:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm<br> <br>
+
+ 7. Check the resolution of hosts and set the hostname of server if desired:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;edit /etc/resolv.conf <br>
+&nbsp;&nbsp;&nbsp;&nbsp;edit /etc/sysconfig/network<br>
+&nbsp;&nbsp;&nbsp;&nbsp;logoff to get new hostname<br> <br>
+
  8. We now have a working centos linux server. You might like to take a backup copy of the virtual box directory.<br><br>
 
 
 <h3 id="localserver">Create a local server</h3>
- Run fogviz in a command prompt (or if you installed it as ec2dream run ec2dream).<br><br>
+ Run ec2dream in a command prompt.<br><br>
  1. In the tree view click on Local Servers and then click new button to create a local server definition.<br>
  <img border=0 width=600 height=325 src="../gettingstarted/images/image80.jpg"><br><br>
- 2. Give the server a name and enter the IP address noted earlier. (If you leave out the ip address EC2Dream Fogviz will use the server name to access the server)<br>
+ 2. Give the server a name and enter the IP address noted earlier. (If you leave out the ip address EC2Dream will use the server name to access the server)<br>
     I entered for chef:<br>
     &nbsp;&nbsp;&nbsp;&nbsp;Server: ubuntu<br>
     &nbsp;&nbsp;&nbsp;&nbsp;IP Address: 192.168.144.129<br>
@@ -133,10 +133,10 @@
     &nbsp;&nbsp;&nbsp;&nbsp;SSH user: notroot<br>
     &nbsp;&nbsp;&nbsp;&nbsp;SSH password: thoughtpolice<br><br>
 	For Puppet enter:<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Puppet Manifest: site.pp<br>	
+    &nbsp;&nbsp;&nbsp;&nbsp;Puppet Manifest: site.pp<br>
 	and if using a puppet roles module like <a href="https://github.com/neillturner/puppet_roles_hiera_parameters">puppet_roles_hiera_parameters</a><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;Puppet Roles: base,webserver<br><br>
-	
+
  3. Test you can access the server via ssh by pressing the terminal button.<img border=0 width=20 height=20 src="../gettingstarted/icons/monitor.png"><br><br>
  4. For Chef press the chef button and install the App node on the server.<img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"><br><br>
  5. For Puppet press the puppet button and install the manifest and modules on the server.<img border=0 width=20 height=20 src="../gettingstarted/icons/puppet.png"><br><br><br>

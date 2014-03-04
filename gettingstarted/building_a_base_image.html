@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 
-<title>EC2Dream Fogviz Documentation</title>
+<title>EC2Dream Documentation</title>
 
 <link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../print.css" type="text/css" media="print" />
@@ -74,7 +74,7 @@ It is also a good approach for developing and testing cookbooks or manifests eve
 <br><br>
 <h2 id="buildabaseserver">Build a Server running a webserver</h2>
 
-1. Set the Chef or Puppet Repository location in the EC2Dream Fogviz Environments panel.<br>
+1. Set the Chef or Puppet Repository location in the EC2Dream Environments panel.<br>
 In the Chef Repository there is a base cookbook in the cookbooks directory. Add any additional requirements for all servers to the base cookbook.
 A sample cloud_init script can be used to pass parameters in the user data as an alternative to running chef or puppet at start up and pass a chef node.json file.
 <br><br>
@@ -101,14 +101,14 @@ add to the attributes in the chef cookbook:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;For 64 bit Centos or Redhat<br>
 <code>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm<br><br>
-</code>   
+</code>
 
 6. For ubuntu for ease of testing it is useful to be able to sudo without a password. To Set this up:<br>
- 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edit /etc/sudoers file <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and change to<br> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%sudo ALL=NOPASSWD: ALL<br><br> 
-   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and change to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%sudo ALL=NOPASSWD: ALL<br><br>
+
 7. Go to the Server panel for the running the Base server started earlier:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;To use chef change the Chef Node to app and press on the Chef button <img border=0 width=20 height=20 src="../gettingstarted/icons/chef.png"><br>
 &nbsp;&nbsp;&nbsp;&nbsp;To use puppet change the Puppet Manifest to test.pp and Puppet Role to webserver and press on the Puppet button <img border=0 width=20 height=20 src="../gettingstarted/icons/puppet.png"><br><br>
