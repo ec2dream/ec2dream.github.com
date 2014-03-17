@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+
+<title>EC2Dream Documentation</title>
+
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../print.css" type="text/css" media="print" />
+<link href='../favicons.ico' rel='shortcut icon'/>
+<link href='../favicons.ico' rel='icon'/>
+</head>
+<body>
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://ec2dream.github.com">EC2Dream - Build and Manage Cloud Servers</a></h1>
+	  <div class="description">
+</div>
+	</div>
+	<div id="navi">
+		<ul id="nav">
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com" title="Home">Home</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Methodology" title="Methodology">Methodology</a></li>
+		  <li class="page_item"><a href=" http://ec2dream.blogspot.co.uk/search/label/EC2Dream%20Installation" title="Install">Install</a></li>
+		  <li class="page_item"><a href="http://ec2dream.github.com" title="Documentation">Documentation</a></li>
+		  <li class="page_item"><a href="http://ec2dream.blogspot.com/search/label/Contact" title="Contact">Contact</a></li>
+		</ul>
+	</div>
+
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">
+  <div id="content">
+<div id="breadcrumb">
+       <a href="../index.html">Documentation</a> &gt; <a href="./using_test_kitchen.html">Testing with Test Kitchen</a>
+      </div>
+
+    <div class="post" >
+	  <div class="entry">
+        <h2><a href="./using_test_kitchen.html">Testing with Test Kitchen</a></h2>
+
+<h3 id="introtag"></h3>
+    <a href="http://kitchen.ci/">Test Kitchen</a> is a test harness tool that can test chef (and in the future puppet) scripts on a wide variety of platforms using a variety of test tools.
+	Here we will test chef scripts on Vagrant.<br><br>
+
+<h3 id="configbastion">Install Pre-Requisites</h3><br>
+
+ To use vagrant with Test Kitchen install:<br>
+   <a href="https://www.virtualbox.org/wiki/Downloads">Oracle Virtual Box</a><br>
+   <a href="https://www.vagrantup.com/downloads.html">Vagrant</a><br><br>
+   
+ <h3 id="createenvironment">Create an EC2Dream Environment</h3><br>
+
+ In a command line run ec2dream and create a new "Servers" environment called say test.<br><br>   
+ <img border=0 width=500 height=225 src="../gettingstarted/images/imaget01.jpg"><br><br>
+ 
+ <h3 id="createinstance">Create an Instance</h3><br>
+ Click on "Chef Test Kitchen" and a list of kitchen instances are displayed.<br><br>
+ <img border=0 width=500 height=225 src="../gettingstarted/images/imaget02.jpg"><br><br>
+ Select instance "default-ubuntu-1204" and the Server will display.<br><br>
+  <img border=0 width=500 height=225 src="../gettingstarted/images/imaget03.jpg"><br><br>
+ Click on <img border=0 width=25 height=25 src="../gettingstarted/icons/rocket.png"> to create the instance. First time will be slow as the test kitchen and related software is automatically installed and the virtual box is downloaded for ubuntu 1204<br><br> 
+ <img border=0 width=500 height=225 src="../gettingstarted/images/imaget04.jpg"><br><br>
+ Eventually the instance will be created and you will have a running instance in vagrant<br><br>
+  <img border=0 width=500 height=225 src="../gettingstarted/images/imaget05.jpg"><br><br>
+  Click on <img border=0 width=25 height=25 src="../gettingstarted/icons/monitor.png"> to ssh to the instance<br><br>
+  <img border=0 width=500 height=225 src="../gettingstarted/images/imaget06.jpg"><br><br>
+ 
+<h3 id="covergeverifyinstance">Converge and Verify instance</h3>
+ Run the chef cookbooks by clicking on  the <img border=0 width=25 height=25 src="../gettingstarted/icons/arrow_in.png"> converge button<br><br>
+ <img border=0 width=500 height=275 src="../gettingstarted/images/imaget07.jpg"><br><br>
+  Run the integration tests by clicking on  the <img border=0 width=25 height=25 src="../gettingstarted/icons/accept.png"> verify button<br><br>
+ <img border=0 width=500 height=275 src="../gettingstarted/images/imaget08.jpg"><br><br>
+ <b>NOTE:</b> Instance Create, Converge and Verify can be run in one step by pressing the <img border=0 width=25 height=25 src="../gettingstarted/icons/arrow_right.png"> test button<br><br>
+ Click on <img border=0 width=25 height=25 src="../gettingstarted/icons/script.png"> to display the kitchen and instance logs<br><br>
+ <img border=0 width=500 height=275 src="../gettingstarted/images/imaget09.jpg"><br><br>
+ <h3 id="destroyinstance">Destroy instance</h3>
+Click on <img border=0 width=25 height=25 src="../gettingstarted/icons/kill.png"> to destroy to the instance.<br><br>
+ <h3 id="config">Configure Test Kitchen</h3>
+ Click on the <img border=0 width=25 height=25 src="../gettingstarted/icons/application_edit.png"> edit button to configure the kitchen.yaml file<br><br>
+  <img border=0 width=500 height=275 src="../gettingstarted/images/imaget12.jpg"><br><br>
+ <h3 id="foodcritic">Foodcritic - Code Style and lint checking</h3>
+ Foodcritic can be run by entering the cookbook directory in the foodcritic parameter and pressing the <img border=0 width=25 height=25 src="../gettingstarted/icons/style.png"> foodcritic button<br><br>
+  <img border=0 width=500 height=275 src="../gettingstarted/images/imaget10.jpg"><br><br>
+ <b>NOTE:</b> These run on your workstation and don't use test kitchen.<br><br>
+   <h3 id="rspec">RSpec - unit tests</h3>
+ RSpec can be run by entering the rspec scripts in the rspec parameter and pressing the <img border=0 width=25 height=25 src="../gettingstarted/icons/lightbulb.png"> rspec button<br><br>
+  <img border=0 width=500 height=275 src="../gettingstarted/images/imaget11.jpg"><br><br>
+  <b>NOTE:</b> These run on your workstation and don't use test kitchen.<br><br>
+
+
+		</div>
+		<div class="post-content">
+		<div id="breadcrumb">
+                      Back: <a href="../index.html">Back to Documentation</a>
+				      </div>
+
+		</div>
+		<div class="post-info">
+		</div>
+	</div>
+
+
+  </div><!--/content -->
+
+
+  <hr class="clear" />
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+
+  <!--recent comments start -->
+
+  <!--recent comments start -->
+  <div class="footer-recent-comments">
+   </div>
+  <!--recent comments end -->
+
+	<!--about text start -->
+	<div class="footer-meta">
+		<h4></h4>
+
+	</div>
+	<!--about text end -->
+
+  <hr class="clear" />
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignright">Design by <a href="http://www.justskins.com/">Just Skins</a></div>
+	<div class="alignleft">Copyright &copy; 2012 EC2Dream. All rights reserved.</div>
+</div>
+
+</div>
+</body>
+</html>
