@@ -42,7 +42,7 @@
         <h2><a href="./using_test_kitchen.html">Testing with Test Kitchen</a></h2>
 
 <h3 id="introtag"></h3>
-    <a href="http://kitchen.ci/">Test Kitchen</a> is a test harness tool that can test chef (and in the future puppet) scripts on a wide variety of platforms using a variety of test tools.
+    <a href="http://kitchen.ci/">Test Kitchen</a> is a test harness tool that can test a wide variety of config management tools on a wide variety of platforms using a variety of test tools.
 	Here we will test chef scripts on Vagrant.<br><br>
 
 <h3 id="configbastion">Install Pre-Requisites</h3><br>
@@ -50,24 +50,24 @@
  To use vagrant with Test Kitchen install:<br>
    <a href="https://www.virtualbox.org/wiki/Downloads">Oracle Virtual Box</a><br>
    <a href="https://www.vagrantup.com/downloads.html">Vagrant</a><br><br>
-   
+
  <h3 id="createenvironment">Create an EC2Dream Environment</h3><br>
 
- In a command line run ec2dream and create a new "Servers" environment called say test.<br><br>   
+ In a command line run ec2dream and create a new "Servers" environment called say test.<br><br>
  <img border=0 width=500 height=225 src="../gettingstarted/images/imaget01.jpg"><br><br>
- 
+
  <h3 id="createinstance">Create an Instance</h3><br>
- Click on "Chef Test Kitchen" and a list of kitchen instances are displayed.<br><br>
+ Click on "Test Kitchen" and a list of kitchen instances are displayed.<br><br>
  <img border=0 width=500 height=225 src="../gettingstarted/images/imaget02.jpg"><br><br>
  Select instance "default-ubuntu-1204" and the Server will display.<br><br>
   <img border=0 width=500 height=225 src="../gettingstarted/images/imaget03.jpg"><br><br>
- Click on <img border=0 width=25 height=25 src="../gettingstarted/icons/rocket.png"> to create the instance. First time will be slow as the test kitchen and related software is automatically installed and the virtual box is downloaded for ubuntu 1204<br><br> 
+ Click on <img border=0 width=25 height=25 src="../gettingstarted/icons/rocket.png"> to create the instance. First time will be slow as the test kitchen and related software is automatically installed and the virtual box is downloaded for ubuntu 1204<br><br>
  <img border=0 width=500 height=225 src="../gettingstarted/images/imaget04.jpg"><br><br>
  Eventually the instance will be created and you will have a running instance in vagrant<br><br>
   <img border=0 width=500 height=225 src="../gettingstarted/images/imaget05.jpg"><br><br>
   Click on <img border=0 width=25 height=25 src="../gettingstarted/icons/monitor.png"> to ssh to the instance<br><br>
   <img border=0 width=500 height=225 src="../gettingstarted/images/imaget06.jpg"><br><br>
- 
+
 <h3 id="covergeverifyinstance">Converge and Verify instance</h3>
  Run the chef cookbooks by clicking on  the <img border=0 width=25 height=25 src="../gettingstarted/icons/arrow_in.png"> converge button<br><br>
  <img border=0 width=500 height=275 src="../gettingstarted/images/imaget07.jpg"><br><br>
